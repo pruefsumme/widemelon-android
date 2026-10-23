@@ -256,8 +256,8 @@
     <string name="jit_not_supported">JIT 仅支持64位设备。</string>
     <string name="save_internal_config_as_file">将内部配置保存为文件</string>
     <string name="save_internal_config_as_file_summary">使 melonDualDS.opts 与存档文件目录保持同步；未配置存档文件目录时，则与 ROM 目录保持同步。</string>
-    <string name="system_app_log_file_enabled">WatermelonDS Log</string>
-    <string name="system_app_log_file_enabled_summary">在第一个 ROM 文件夹中创建 WatermelonDS.txt，并记录应用、原生代码和核心的 logcat 日志用于调试。仅在复现问题时启用。</string>
+    <string name="system_app_log_file_enabled">WideMelon Log</string>
+    <string name="system_app_log_file_enabled_summary">在第一个 ROM 文件夹中创建 WideMelon.txt，并记录应用、原生代码和核心的 logcat 日志用于调试。仅在复现问题时启用。</string>
     <string name="backup_settings">备份设置</string>
     <string name="restore_settings">恢复设置</string>
     <string name="settings_backup_success">设置备份已创建。\n\n已跳过下列设置：\n&#8226; RetroAchievements 会话\n&#8226; ROM/存档目录\n&#8226; DS BIOS 目录\n&#8226; DSi BIOS 目录</string>
@@ -957,8 +957,8 @@
     <string name="enable_retroachievements">启用 RetroAchievements</string>
     <string name="enable_retroachievements_summary">保持账号登录状态，但在禁用时跳过成就运行与资料活动</string>
     <string name="ra_offline_backend_title">离线成就提供方</string>
-    <string name="ra_offline_backend_summary">选择内置的 WatermelonDS 提供方或 RAOfflineProxy</string>
-    <string name="ra_offline_backend_built_in">WatermelonDS 内置</string>
+    <string name="ra_offline_backend_summary">选择内置的 WideMelon 提供方或 RAOfflineProxy</string>
+    <string name="ra_offline_backend_built_in">WideMelon 内置</string>
     <string name="ra_offline_backend_proxy">RAOfflineProxy</string>
     <string name="ra_offline_proxy_active_summary">RAOfflineProxy 当前处于活动状态。更改提供方后，请重启当前游戏会话。</string>
     <string name="ra_offline_proxy_not_active">已选择 RAOfflineProxy，但其未处于活动状态。启动游戏前，请先启动 RAOfflineProxy。</string>
@@ -1088,7 +1088,7 @@
     <string name="shader_compatibility_report_clear">清除</string>
     <string-array name="external_display_mode_options">
         <item>镜像</item>
-        <item>WatermelonDS</item>
+        <item>WideMelon</item>
     </string-array>
     <string name="rom_ndz_unsupported_legacy">旧版 .ndz 格式（LZ4 或平铺格式）。请使用 ndz-studio（zstd）重新打包。</string>
     <string name="rom_ndz_unsupported_trained_dict">此 .ndz 使用已停用的训练字典格式。请使用 ndz-studio 重新打包。</string>
@@ -1164,7 +1164,7 @@
     <string name="freedreno_summary">Turnip/Freedreno 高级选项。留空以使用驱动默认值。更改后需要重启应用。驱动可能忽略不支持的选项。</string>
     <string name="freedreno_default">驱动默认值</string>
     <string name="freedreno_invalid">最多输入 2048 个 ASCII 字符，不可换行。</string>
-    <string name="freedreno_restart">重启 WatermelonDS 以保存并应用此更改。</string>
+    <string name="freedreno_restart">重启 WideMelon 以保存并应用此更改。</string>
     <string name="freedreno_restart_button">重启</string>
     <string name="freedreno_save_failed">无法保存设置。点击重启以重试。</string>
 </resources>

@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">WatermelonDS</string>
+    <string name="app_name">WideMelon</string>
 
     <string name="ok">OK</string>
     <string name="yes">Yes</string>
@@ -274,8 +274,8 @@
     <string name="pause_hint_accept">Accept</string>
     <string name="pause_hint_resume">Resume</string>
     <string name="pause_hint_back">Back</string>
-    <string name="app_brand_watermelon" translatable="false">Watermelon</string>
-    <string name="app_brand_ds" translatable="false">DS</string>
+    <string name="app_brand_watermelon" translatable="false">Wide</string>
+    <string name="app_brand_ds" translatable="false">Melon</string>
     <string name="external_hint_open">Open</string>
     <string name="external_hint_favorite">Favorite</string>
     <string name="save_state_slot_quick">QUICK</string>
@@ -322,8 +322,8 @@
     <string name="jit_not_supported">JIT is only supported in 64 bit devices.</string>
     <string name="save_internal_config_as_file">Save internal config as a file</string>
     <string name="save_internal_config_as_file_summary">Keeps melonDualDS.opts synchronized in the save-file directory, or in a ROM directory when no save-file directory is configured.</string>
-    <string name="system_app_log_file_enabled">WatermelonDS Log</string>
-    <string name="system_app_log_file_enabled_summary">Creates WatermelonDS.txt in the first ROM folder and records app, native, and core logcat lines for debugging. Enable only while reproducing an issue.</string>
+    <string name="system_app_log_file_enabled">WideMelon Log</string>
+    <string name="system_app_log_file_enabled_summary">Creates WideMelon.txt in the first ROM folder and records app, native, and core logcat lines for debugging. Enable only while reproducing an issue.</string>
     <string name="system_dldi_sd_card_enabled">Enable DLDI / Homebrew SD</string>
     <string name="system_dldi_sd_card_enabled_summary">Mounts a virtual SD card for DLDI homebrew. Needed by apps like ZXDS.</string>
     <string name="system_dldi_sd_card_dir">DLDI SD folder</string>
@@ -483,8 +483,8 @@
     <string name="hardcore_mode">Hardcore mode</string>
     <string name="hardcore_mode_summary">Allows hardcore achievements to be earned. Cheats, save states, slow-motion, and rewind are disabled</string>
     <string name="ra_offline_backend_title">Offline achievements provider</string>
-    <string name="ra_offline_backend_summary">Choose the built-in WatermelonDS provider or RAOfflineProxy</string>
-    <string name="ra_offline_backend_built_in">Built into WatermelonDS</string>
+    <string name="ra_offline_backend_summary">Choose the built-in WideMelon provider or RAOfflineProxy</string>
+    <string name="ra_offline_backend_built_in">Built into WideMelon</string>
     <string name="ra_offline_backend_proxy">RAOfflineProxy</string>
     <string name="ra_offline_proxy_active_summary">RAOfflineProxy is active. Restart the current game session after a provider change.</string>
     <string name="ra_offline_proxy_not_active">RAOfflineProxy is selected but is not active. Start RAOfflineProxy before starting a game.</string>
@@ -1068,7 +1068,7 @@
 
     <string-array name="external_display_mode_options">
         <item>Mirror</item>
-        <item>WatermelonDS</item>
+        <item>WideMelon</item>
     </string-array>
 
     <string-array name="audio_interpolation_options">
@@ -1174,7 +1174,7 @@
     <string name="freedreno_summary">Advanced Turnip/Freedreno options. Leave empty for driver defaults. Changes require an app restart. Unsupported options may be ignored by your driver.</string>
     <string name="freedreno_default">Driver default</string>
     <string name="freedreno_invalid">Use at most 2048 ASCII characters without line breaks.</string>
-    <string name="freedreno_restart">Restart WatermelonDS to save and apply this change.</string>
+    <string name="freedreno_restart">Restart WideMelon to save and apply this change.</string>
     <string name="freedreno_name_fd_dev_features" translatable="false">FD_DEV_FEATURES</string>
     <string name="freedreno_name_tu_debug" translatable="false">TU_DEBUG</string>
     <string name="freedreno_name_fd_mesa_debug" translatable="false">FD_MESA_DEBUG</string>

@@ -55,7 +55,7 @@ object GitHubReleaseSelector {
         return isRepositoryDownload(asset) &&
             asset.contentType == APK_CONTENT_TYPE &&
             lowerName.endsWith(".apk") &&
-            "melondualds" in lowerName &&
+            "widemelon" in lowerName &&
             "nightly" !in lowerName
     }
 
@@ -64,7 +64,7 @@ object GitHubReleaseSelector {
         return isRepositoryDownload(asset) &&
             asset.contentType == APK_CONTENT_TYPE &&
             lowerName.endsWith(".apk") &&
-            "melondualds" in lowerName &&
+            "widemelon" in lowerName &&
             "nightly" in lowerName
     }
 

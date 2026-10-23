@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">WatermelonDS</string>
+    <string name="app_name">WideMelon</string>
     
     <string name="ok">Ok</string>
     <string name="yes">Sí</string>
@@ -205,8 +205,8 @@
     <string name="jit_not_supported">JIT solamente es compatible con dispositivos de 64 bits.</string>
     <string name="save_internal_config_as_file">Guardar configuración interna como archivo</string>
     <string name="save_internal_config_as_file_summary">Mantiene melonDualDS.opts sincronizado en el directorio de archivos de guardado, o en una ruta de ROMs si no hay directorio de guardado configurado.</string>
-    <string name="system_app_log_file_enabled">WatermelonDS Log</string>
-    <string name="system_app_log_file_enabled_summary">Crea WatermelonDS.txt en la primera carpeta de ROMs y registra líneas logcat de app, nativo y core para depurar. Actívalo solo mientras reproduces un problema.</string>
+    <string name="system_app_log_file_enabled">WideMelon Log</string>
+    <string name="system_app_log_file_enabled_summary">Crea WideMelon.txt en la primera carpeta de ROMs y registra líneas logcat de app, nativo y core para depurar. Actívalo solo mientras reproduces un problema.</string>
     <string name="backup_settings">Respaldar ajustes</string>
     <string name="restore_settings">Restaurar ajustes</string>
     <string name="settings_backup_success">Respaldo de ajustes creado.\n\nSe omitieron:\n&#8226; Token de sesión de RetroAchievements\n&#8226; Directorios de búsqueda de ROMs\n&#8226; Directorio de DS BIOS\n&#8226; Directorio de DSi BIOS</string>
@@ -686,7 +686,7 @@
     <string name="freedreno_summary">Opciones avanzadas de Turnip/Freedreno. Deja vacío para usar los valores del driver. Los cambios requieren reiniciar la app. El driver puede ignorar opciones no compatibles.</string>
     <string name="freedreno_default">Predeterminado del driver</string>
     <string name="freedreno_invalid">Usa como máximo 2048 caracteres ASCII sin saltos de línea.</string>
-    <string name="freedreno_restart">Reinicia WatermelonDS para guardar y aplicar este cambio.</string>
+    <string name="freedreno_restart">Reinicia WideMelon para guardar y aplicar este cambio.</string>
     <string name="freedreno_restart_button">Reiniciar</string>
     <string name="freedreno_save_failed">No se pudo guardar el ajuste. Pulsa Reiniciar para volver a intentarlo.</string>
 </resources>

@@ -34,7 +34,7 @@ android {
     compileSdk = AppConfig.compileSdkVersion
     ndkVersion = AppConfig.ndkVersion
     defaultConfig {
-        applicationId = "me.magnum.melondualds"
+        applicationId = "io.github.pruefsumme.widemelon"
         minSdk = AppConfig.minSdkVersion
         targetSdk = AppConfig.targetSdkVersion
         versionCode = AppConfig.versionCode
@@ -134,7 +134,7 @@ android {
 androidComponents {
     onVariants(selector().withName("gitHubProdDebug")) { variant ->
         // Keep prod-debug distinct from other debug/release variants.
-        variant.manifestPlaceholders.put("appName", "debug WatermelonDS")
+        variant.manifestPlaceholders.put("appName", "debug WideMelon")
         variant.sources.res?.addStaticSourceDirectory("src/nightly/res")
     }
 }
