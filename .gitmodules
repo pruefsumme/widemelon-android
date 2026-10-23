@@ -1,7 +1,7 @@
 [submodule "melonDS-android-lib"]
 	path = melonDS-android-lib
-	url = https://github.com/SapphireRhodonite/melonDS-android-lib.git
-	branch = GBARumble_PR
+	url = https://github.com/pruefsumme/melonDS-android-lib.git
+	branch = widemelon
 [submodule "app/src/main/cpp/oboe"]
 	path = app/src/main/cpp/oboe
 	url = https://github.com/google/oboe.git
