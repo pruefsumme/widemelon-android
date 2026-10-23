@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="watermelon_icon_default_background">#62BAB9</color>
-    <color name="watermelon_icon_alt_background">#EEA336</color>
-    <string name="use_alt_app_icon">Use alt app icon</string>
-    <string name="use_alt_app_icon_summary">Use the alternate launcher icon and opening animation.</string>
+    <color name="watermelon_icon_default_background">#F6F1E7</color>
+    <color name="watermelon_icon_alt_background">#1E1D24</color>
+    <string name="use_alt_app_icon">Dark app icon</string>
+    <string name="use_alt_app_icon_summary">Use the dark launcher icon instead of the light one.</string>
     <string name="app_icon_change_failed">Could not change the app icon.</string>
 </resources>

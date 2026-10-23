@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="use_alt_app_icon">Usar icono alternativo</string>
-    <string name="use_alt_app_icon_summary">Usar el icono alternativo y su animación de apertura.</string>
+    <string name="use_alt_app_icon">Icono oscuro</string>
+    <string name="use_alt_app_icon_summary">Usar el icono oscuro en lugar del claro.</string>
     <string name="app_icon_change_failed">No se pudo cambiar el icono de la aplicación.</string>
 </resources>
