@@ -105,6 +105,9 @@ interface SettingsRepository {
     fun isExternalDisplayKeepAspectRationEnabled(): Boolean
     fun observeExternalDisplayKeepAspectRationEnabled(): Flow<Boolean>
 
+    fun getWidescreenConfiguration(): WidescreenConfiguration
+    fun observeWidescreenConfiguration(): Flow<WidescreenConfiguration>
+
     fun getDualScreenPreset(): DualScreenPreset
     fun observeDualScreenPreset(): Flow<DualScreenPreset>
     fun isDualScreenIntegerScaleEnabled(): Boolean
@@ -184,6 +187,8 @@ interface SettingsRepository {
     fun setSelectedLayoutId(layoutId: UUID)
 
     fun setExternalDisplayKeepAspectRatioEnabled(enabled: Boolean)
+    fun setWidescreenMode(mode: WidescreenMode)
+    fun setBottomScreenMode(mode: BottomScreenMode)
     fun setDualScreenPreset(preset: DualScreenPreset)
     fun setDualScreenIntegerScaleEnabled(enabled: Boolean)
     fun setDualScreenInternalFillHeightEnabled(enabled: Boolean)

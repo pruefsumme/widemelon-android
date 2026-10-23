@@ -180,4 +180,20 @@
         <item>rom_dir</item>
         <item>internal_dir</item>
     </string-array>
+    <string-array name="widescreen_mode_values" translatable="false">
+        <item>off</item>
+        <item>auto</item>
+        <item>wide_16_9</item>
+        <item>wide_21_9</item>
+        <item>custom</item>
+    </string-array>
+    <string-array name="widescreen_bottom_screen_mode_values" translatable="false">
+        <item>swap</item>
+        <item>overlay</item>
+        <item>side_by_side</item>
+    </string-array>
+    <string-array name="widescreen_fallback_values" translatable="false">
+        <item>stretch</item>
+        <item>native</item>
+    </string-array>
 </resources>

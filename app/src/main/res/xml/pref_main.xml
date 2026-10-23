@@ -2,6 +2,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <Preference
+            android:key="settings_home_widemelon"
+            android:title="@string/category_widemelon"
+            android:summary="@string/category_widemelon_summary"
+            app:icon="@drawable/ic_widescreen"
+            android:layout="@layout/preference_main_card"
+            android:fragment="me.magnum.melonds.ui.settings.fragments.WideMelonPreferencesFragment" />
+
+    <Preference
             android:key="settings_home_general"
             android:title="@string/category_general"
             android:summary="@string/category_general_summary"

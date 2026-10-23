@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ListPreference
+            android:key="widescreen_mode"
+            android:title="@string/widescreen"
+            android:summary="%s"
+            app:iconSpaceReserved="false"
+            android:entries="@array/widescreen_mode_options"
+            android:entryValues="@array/widescreen_mode_values"
+            android:defaultValue="auto" />
+
+    <SeekBarPreference
+            android:key="widescreen_custom_width"
+            android:title="@string/widescreen_custom_width"
+            app:iconSpaceReserved="false"
+            app:updatesContinuously="true"
+            app:seekBarIncrement="2"
+            app:min="256"
+            android:max="768"
+            android:defaultValue="342" />
+
+    <ListPreference
+            android:key="widescreen_bottom_screen_mode"
+            android:title="@string/widescreen_bottom_screen"
+            android:summary="%s"
+            app:iconSpaceReserved="false"
+            android:entries="@array/widescreen_bottom_screen_mode_options"
+            android:entryValues="@array/widescreen_bottom_screen_mode_values"
+            android:defaultValue="swap" />
+
+    <SeekBarPreference
+            android:key="widescreen_overlay_size"
+            android:title="@string/widescreen_overlay_size"
+            app:iconSpaceReserved="false"
+            app:updatesContinuously="true"
+            app:min="25"
+            android:max="60"
+            android:defaultValue="40" />
+
+    <SeekBarPreference
+            android:key="widescreen_overlay_opacity"
+            android:title="@string/widescreen_overlay_opacity"
+            app:iconSpaceReserved="false"
+            app:updatesContinuously="true"
+            app:min="30"
+            android:max="100"
+            android:defaultValue="85" />
+
+    <ListPreference
+            android:key="widescreen_fallback"
+            android:title="@string/widescreen_fallback"
+            android:summary="%s"
+            app:iconSpaceReserved="false"
+            android:entries="@array/widescreen_fallback_options"
+            android:entryValues="@array/widescreen_fallback_values"
+            android:defaultValue="stretch" />
+
+    <Preference
+            android:key="widescreen_dual_screen_note"
+            android:summary="@string/widescreen_dual_screen_note"
+            android:selectable="false"
+            app:iconSpaceReserved="false" />
+</PreferenceScreen>

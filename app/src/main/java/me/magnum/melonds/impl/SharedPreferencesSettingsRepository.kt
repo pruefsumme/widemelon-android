@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
@@ -40,6 +41,10 @@ import me.magnum.melonds.domain.model.ConsoleType
 import me.magnum.melonds.domain.model.ControllerConfiguration
 import me.magnum.melonds.domain.model.DldiSdCardConfiguration
 import me.magnum.melonds.domain.model.DualScreenPreset
+import me.magnum.melonds.domain.model.BottomScreenMode
+import me.magnum.melonds.domain.model.WidescreenConfiguration
+import me.magnum.melonds.domain.model.WidescreenFallback
+import me.magnum.melonds.domain.model.WidescreenMode
 import me.magnum.melonds.domain.model.EmulatorConfiguration
 import me.magnum.melonds.domain.model.ExternalDisplayMode
 import me.magnum.melonds.domain.model.FirmwareConfiguration
@@ -103,6 +108,12 @@ class SharedPreferencesSettingsRepository(
         private const val CONTROLLER_CONFIG_FILE = "controller_config.json"
         private const val KEY_EXTERNAL_DISPLAY_MODE = "external_display_mode"
         private const val KEY_DUAL_SCREEN_PRESET = "dual_screen_preset"
+        private const val KEY_WIDESCREEN_MODE = "widescreen_mode"
+        private const val KEY_WIDESCREEN_CUSTOM_WIDTH = "widescreen_custom_width"
+        private const val KEY_WIDESCREEN_BOTTOM_SCREEN_MODE = "widescreen_bottom_screen_mode"
+        private const val KEY_WIDESCREEN_OVERLAY_SIZE = "widescreen_overlay_size"
+        private const val KEY_WIDESCREEN_OVERLAY_OPACITY = "widescreen_overlay_opacity"
+        private const val KEY_WIDESCREEN_FALLBACK = "widescreen_fallback"
         private const val KEY_DUAL_SCREEN_INTEGER_SCALE = "dual_screen_integer_scale"
         private const val KEY_DUAL_SCREEN_INTERNAL_FILL = "dual_screen_internal_fill_height"
         private const val KEY_DUAL_SCREEN_EXTERNAL_FILL = "dual_screen_external_fill_height"
@@ -1392,6 +1403,31 @@ class SharedPreferencesSettingsRepository(
         }
     }
 
+    override fun getWidescreenConfiguration(): WidescreenConfiguration {
+        return WidescreenConfiguration(
+            mode = getEnumPreference(KEY_WIDESCREEN_MODE, WidescreenMode.AUTO),
+            customWidth = preferences.getInt(KEY_WIDESCREEN_CUSTOM_WIDTH, WidescreenConfiguration.WIDTH_16_9),
+            bottomScreenMode = getEnumPreference(KEY_WIDESCREEN_BOTTOM_SCREEN_MODE, BottomScreenMode.SWAP),
+            overlaySizePercent = preferences.getInt(KEY_WIDESCREEN_OVERLAY_SIZE, 40),
+            overlayOpacityPercent = preferences.getInt(KEY_WIDESCREEN_OVERLAY_OPACITY, 85),
+            fallback = getEnumPreference(KEY_WIDESCREEN_FALLBACK, WidescreenFallback.STRETCH),
+        )
+    }
+
+    override fun observeWidescreenConfiguration(): Flow<WidescreenConfiguration> {
+        val keys = listOf(
+            KEY_WIDESCREEN_MODE,
+            KEY_WIDESCREEN_CUSTOM_WIDTH,
+            KEY_WIDESCREEN_BOTTOM_SCREEN_MODE,
+            KEY_WIDESCREEN_OVERLAY_SIZE,
+            KEY_WIDESCREEN_OVERLAY_OPACITY,
+            KEY_WIDESCREEN_FALLBACK,
+        )
+        return combine(keys.map { key -> getOrCreatePreferenceSharedFlow(key) { } }) {
+            getWidescreenConfiguration()
+        }.distinctUntilChanged()
+    }
+
     override fun getDualScreenPreset(): DualScreenPreset {
         return getEnumPreference(KEY_DUAL_SCREEN_PRESET, DualScreenPreset.OFF)
     }
@@ -1813,6 +1849,18 @@ class SharedPreferencesSettingsRepository(
     override fun setDualScreenPreset(preset: DualScreenPreset) {
         preferences.edit {
             putString(KEY_DUAL_SCREEN_PRESET, preset.name.lowercase())
+        }
+    }
+
+    override fun setWidescreenMode(mode: WidescreenMode) {
+        preferences.edit {
+            putString(KEY_WIDESCREEN_MODE, mode.name.lowercase())
+        }
+    }
+
+    override fun setBottomScreenMode(mode: BottomScreenMode) {
+        preferences.edit {
+            putString(KEY_WIDESCREEN_BOTTOM_SCREEN_MODE, mode.name.lowercase())
         }
     }
 

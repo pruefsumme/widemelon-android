@@ -1189,4 +1189,34 @@
     <string name="dsi_profile_make_default">Set as default</string>
     <string name="dsi_profile_missing">Profile unavailable</string>
     <string name="dsi_profile_remove_description">Remove this profile from settings? Its files will remain. Games assigned to it will need another profile before they can start.</string>
+
+    <!-- WideMelon -->
+    <string name="category_widemelon">WideMelon</string>
+    <string name="category_widemelon_summary">Widescreen, bottom screen and dual screen devices</string>
+    <string name="widescreen">Widescreen</string>
+    <string name="widescreen_summary_hint">Shows more of the 3D world at the sides. Needs the OpenGL renderer</string>
+    <string name="widescreen_custom_width">Custom width</string>
+    <string name="widescreen_custom_width_value">%1$d pixels</string>
+    <string name="widescreen_bottom_screen">Bottom screen</string>
+    <string name="widescreen_overlay_size">Overlay size</string>
+    <string name="widescreen_overlay_opacity">Overlay opacity</string>
+    <string name="widescreen_fallback">Other renderers</string>
+    <string name="widescreen_percentage">%1$d%%</string>
+    <string name="widescreen_dual_screen_note">On devices with a second screen the bottom screen goes there automatically.</string>
+    <string-array name="widescreen_mode_options">
+        <item>Off</item>
+        <item>Auto (match display)</item>
+        <item>16:9</item>
+        <item>21:9</item>
+        <item>Custom</item>
+    </string-array>
+    <string-array name="widescreen_bottom_screen_mode_options">
+        <item>Full screen swap</item>
+        <item>Floating overlay</item>
+        <item>Side by side</item>
+    </string-array>
+    <string-array name="widescreen_fallback_options">
+        <item>Stretch to fill</item>
+        <item>Keep 4:3</item>
+    </string-array>
 </resources>
