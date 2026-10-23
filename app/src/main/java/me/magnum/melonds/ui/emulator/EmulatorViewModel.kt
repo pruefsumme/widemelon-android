@@ -80,6 +80,7 @@ import me.magnum.melonds.domain.model.SCREEN_WIDTH
 import me.magnum.melonds.domain.model.ScreenAlignment
 import me.magnum.melonds.domain.model.VideoFiltering
 import me.magnum.melonds.domain.model.VideoRenderer
+import me.magnum.melonds.domain.model.WidescreenConfiguration
 import me.magnum.melonds.domain.model.defaultExternalAlignment
 import me.magnum.melonds.domain.model.defaultInternalAlignment
 import me.magnum.melonds.domain.model.emulator.EmulatorEvent
@@ -176,6 +177,7 @@ import me.magnum.melonds.impl.retroachievements.offline.RetroAchievementsImageCa
 import me.magnum.melonds.impl.retroachievements.offline.SmartSyncSkipReason
 import me.magnum.melonds.impl.retroachievements.offline.SmartSyncEngine
 import me.magnum.melonds.impl.layout.UILayoutProvider
+import me.magnum.melonds.impl.layout.WidescreenLayoutCalculator
 import me.magnum.melonds.impl.system.NetworkStatusProvider
 import me.magnum.melonds.ui.emulator.component.RetroAchievementsSubmissionHandler
 import me.magnum.melonds.ui.emulator.firmware.FirmwarePauseMenuOption
@@ -525,6 +527,16 @@ class EmulatorViewModel @Inject constructor(
 
     private val _dualScreenExternalVerticalAlignmentOverride = MutableStateFlow(settingsRepository.getDualScreenExternalVerticalAlignmentOverride())
     val dualScreenExternalVerticalAlignmentOverride = _dualScreenExternalVerticalAlignmentOverride.asStateFlow()
+
+    private val _widescreenBottomScreenVisible = MutableStateFlow(false)
+    val widescreenBottomScreenVisible = _widescreenBottomScreenVisible.asStateFlow()
+
+    private val _canToggleBottomScreen = MutableStateFlow(false)
+    val canToggleBottomScreen = _canToggleBottomScreen.asStateFlow()
+
+    // The activity owns the swap state, but dual screen widescreen needs to know which view shows the top screen
+    private val _screensSwapped = MutableStateFlow(false)
+    private var appliedWidescreenViewWidth = -1
 
     private var currentRom: Rom? = null
     private var lastEndpointRestartNoticeGeneration: Long? = null
@@ -2568,7 +2580,21 @@ class EmulatorViewModel @Inject constructor(
                 )
             }
 
-            combine(layoutConfiguration, dualScreenPresetConfiguration) { config, dualScreenConfig ->
+            val widescreenState = combine(
+                settingsRepository.observeWidescreenConfiguration(),
+                _runtimeRendererConfiguration,
+                _widescreenBottomScreenVisible,
+                _screensSwapped,
+            ) { widescreenConfig, rendererConfig, bottomVisible, swapped ->
+                WidescreenState(
+                    configuration = widescreenConfig,
+                    rendererSupportsWidescreen = rendererConfig?.renderer == VideoRenderer.OPENGL,
+                    bottomScreenVisible = bottomVisible,
+                    screensSwapped = swapped,
+                )
+            }
+
+            combine(layoutConfiguration, dualScreenPresetConfiguration, widescreenState) { config, dualScreenConfig, widescreen ->
                 val currentLayoutConfiguration = config.layoutConfiguration
                 val currentLayoutVariant = config.layoutVariant
                 val currentVariant = currentLayoutVariant?.first
@@ -2582,7 +2608,8 @@ class EmulatorViewModel @Inject constructor(
                         config.inputOpacity
                     }
 
-                    val adjustedLayout = applyDualScreenPresetLayoutOverrides(currentLayout, currentVariant, dualScreenConfig)
+                    val presetLayout = applyDualScreenPresetLayoutOverrides(currentLayout, currentVariant, dualScreenConfig)
+                    val adjustedLayout = applyWidescreenLayout(presetLayout, currentVariant, widescreen)
                     RuntimeInputLayoutConfiguration(
                         softInputBehaviour = config.softInputBehaviour,
                         softInputOpacity = opacity,
@@ -2602,6 +2629,51 @@ class EmulatorViewModel @Inject constructor(
         val isHapticFeedbackEnabled: Boolean,
         val inputOpacity: Int,
     )
+
+    private data class WidescreenState(
+        val configuration: WidescreenConfiguration,
+        val rendererSupportsWidescreen: Boolean,
+        val bottomScreenVisible: Boolean,
+        val screensSwapped: Boolean,
+    )
+
+    private fun applyWidescreenLayout(layout: UILayout, variant: UILayoutVariant, state: WidescreenState): UILayout {
+        val result = WidescreenLayoutCalculator.calculate(
+            WidescreenLayoutCalculator.Input(
+                layout = layout,
+                variant = variant,
+                configuration = state.configuration,
+                rendererSupportsWidescreen = state.rendererSupportsWidescreen,
+                // the wider frustum changes what box tests return, keep hardcore runs on stock behaviour
+                forceNative = retroAchievementsSessionMode == RetroAchievementsSessionMode.HARDCORE,
+                bottomScreenVisible = state.bottomScreenVisible,
+                screensSwapped = state.screensSwapped,
+            )
+        )
+
+        _canToggleBottomScreen.value = result.canToggleBottomScreen
+        if (result.viewWidth != appliedWidescreenViewWidth) {
+            appliedWidescreenViewWidth = result.viewWidth
+            MelonEmulator.setWidescreenViewWidth(result.viewWidth)
+        }
+        return result.layout
+    }
+
+    /**
+     * Shows or hides the bottom screen while widescreen fills the display. Returns false when the current layout has
+     * nothing to toggle, so the caller can fall back to something else.
+     */
+    fun toggleWidescreenBottomScreen(): Boolean {
+        if (!_canToggleBottomScreen.value) {
+            return false
+        }
+        _widescreenBottomScreenVisible.update { !it }
+        return true
+    }
+
+    fun setScreensSwapped(swapped: Boolean) {
+        _screensSwapped.value = swapped
+    }
 
     private data class DualScreenPresetConfiguration(
         val preset: DualScreenPreset,
