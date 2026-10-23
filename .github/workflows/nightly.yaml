@@ -1,0 +1,79 @@
+name: Nightly
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: nightly
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  nightly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: zulu
+
+      - uses: android-actions/setup-android@v3
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Set up Rust
+        run: rustup toolchain install stable --profile minimal
+
+      - name: Set up signing
+        env:
+          WIDEMELON_KEYSTORE: ${{ secrets.WIDEMELON_KEYSTORE }}
+          WIDEMELON_KEYSTORE_PASSWORD: ${{ secrets.WIDEMELON_KEYSTORE_PASSWORD }}
+        run: |
+          echo "$WIDEMELON_KEYSTORE" | base64 -d > "$RUNNER_TEMP/release.jks"
+          {
+            echo "MELONDS_KEYSTORE=$RUNNER_TEMP/release.jks"
+            echo "MELONDS_KEYSTORE_PASSWORD=$WIDEMELON_KEYSTORE_PASSWORD"
+            echo "MELONDS_KEY_ALIAS=widemelon"
+            echo "MELONDS_KEY_PASSWORD=$WIDEMELON_KEYSTORE_PASSWORD"
+          } >> local.properties
+
+      - name: Unit tests
+        run: ./gradlew :app:testGitHubProdReleaseUnitTest
+
+      - name: Build nightly APK
+        run: |
+          # tag the version with the commit so nightlies are told apart in the about screen
+          COMMIT=$(git rev-parse --short HEAD)
+          sed -i -e 's/\(versionName = "\)\(.*\)\("\)/\1\2 ('"$COMMIT"')\3/' buildSrc/src/main/kotlin/AppConfig.kt
+          ./gradlew :app:assembleGitHubNightlyRelease
+          cp app/build/outputs/apk/gitHubNightly/release/app-gitHub-nightly-release.apk widemelon-nightly.apk
+
+      - name: Move nightly tag
+        run: |
+          git tag -f nightly
+          git push -f origin refs/tags/nightly
+
+      - name: Publish nightly release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: nightly
+          name: Nightly
+          prerelease: true
+          body: |
+            Latest build from `main` (${{ github.sha }}). Installs next to the stable version.
+          files: widemelon-nightly.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: widemelon-nightly
+          path: widemelon-nightly.apk

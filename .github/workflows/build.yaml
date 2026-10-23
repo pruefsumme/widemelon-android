@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  push:
+    branches-ignore: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: zulu
+
+      - uses: android-actions/setup-android@v3
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      # librashader is built from source with cargo
+      - name: Set up Rust
+        run: rustup toolchain install stable --profile minimal
+
+      - name: Unit tests
+        run: ./gradlew :app:testGitHubProdReleaseUnitTest
+
+      - name: Build debug APK
+        run: ./gradlew :app:assembleGitHubProdDebug
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: widemelon-debug
+          path: app/build/outputs/apk/gitHubProd/debug/*.apk
