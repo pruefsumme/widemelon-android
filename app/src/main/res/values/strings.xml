@@ -1220,4 +1220,16 @@
         <item>Stretch to fill</item>
         <item>Keep 4:3</item>
     </string-array>
+
+    <!-- Welcome -->
+    <string name="welcome_tagline">DS games, without the black bars.</string>
+    <string name="welcome_widescreen_title">Fills your screen</string>
+    <string name="welcome_widescreen_text">The top screen shows more of the 3D world at the sides. Works best with the OpenGL renderer, which is the default.</string>
+    <string name="welcome_bottom_screen_title">Touch screen on demand</string>
+    <string name="welcome_bottom_screen_text">Tap this button in game to switch to the bottom screen and back. With a controller, map Toggle Bottom Screen to any button.</string>
+    <string name="welcome_dual_screen_title">Two screens, no setup</string>
+    <string name="welcome_dual_screen_text">The wide top screen goes on the main display and the touch screen on the second one.</string>
+    <string name="welcome_settings_title">Everything in one place</string>
+    <string name="welcome_settings_text">Settings › WideMelon, or Widescreen &amp; Screens in the in-game menu.</string>
+    <string name="welcome_start">Let\'s play</string>
 </resources>

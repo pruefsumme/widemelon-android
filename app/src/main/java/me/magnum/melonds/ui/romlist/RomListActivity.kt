@@ -47,6 +47,7 @@ import me.magnum.melonds.ui.common.rom.EmulatorLaunchValidatorDelegate
 import me.magnum.melonds.ui.dsiwaremanager.DSiWareManagerActivity
 import me.magnum.melonds.ui.emulator.EmulatorActivity
 import me.magnum.melonds.ui.settings.SettingsActivity
+import me.magnum.melonds.ui.welcome.WelcomeActivity
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -107,6 +108,10 @@ class RomListActivity : AppCompatActivity() {
             }
 
             windowInsets.inset(insets.left, insets.top, insets.right, 0)
+        }
+
+        if (savedInstanceState == null && WelcomeActivity.shouldShow(this)) {
+            startActivity(WelcomeActivity.getIntent(this))
         }
 
         emulatorLauncherValidatorDelegate = EmulatorLaunchValidatorDelegate(this, object : EmulatorLaunchValidatorDelegate.Callback {
