@@ -65,6 +65,12 @@ void OpenGlRetroArchFilter::setConfig(const Config& newConfig)
         pendingClearHistory = true;
 }
 
+// A native atlas is 256 x 386 per scale step, anything wider carries widescreen wings
+static bool isWideAtlas(melonDS::u32 atlasWidth, melonDS::u32 atlasHeight)
+{
+    return atlasWidth * 386u > atlasHeight * 256u;
+}
+
 OpenGlRetroArchFilter::Sizing OpenGlRetroArchFilter::calculateSizing(melonDS::u32 atlasWidth, melonDS::u32 atlasHeight) const
 {
     Sizing sizing{};
@@ -162,6 +168,10 @@ GLuint OpenGlRetroArchFilter::runFilter(GLuint sourceTexture, melonDS::u32 atlas
     if (atlasWidth < kNativeScreenWidth || atlasHeight < kNativeScreenHeight)
         return 0;
 
+    // TODO: run presets on widescreen frames. The chains assume a 256 wide screen, so leave them unfiltered for now
+    if (isWideAtlas(atlasWidth, atlasHeight))
+        return 0;
+
     const Sizing sizing = calculateSizing(atlasWidth, atlasHeight);
     if (sizing.sourceScreenWidth == 0 || sizing.outputScreenWidth == 0)
         return 0;
@@ -223,6 +233,9 @@ bool OpenGlRetroArchFilter::prewarm(melonDS::u32 atlasWidth, melonDS::u32 atlasH
         return true;
 
     if (atlasWidth < kNativeScreenWidth || atlasHeight < kNativeScreenHeight)
+        return true;
+
+    if (isWideAtlas(atlasWidth, atlasHeight))
         return true;
 
     const Sizing sizing = calculateSizing(atlasWidth, atlasHeight);
