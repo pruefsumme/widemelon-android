@@ -1,13 +1,26 @@
-# WatermelonDS
-A Nintendo DS and DSi emulator for Android, built on top of [melonDS](https://melonds.kuribo64.net/) and the
-[melonDS Android port](https://github.com/rafaelvcaetano/melonDS-android) by rafaelvcaetano.
+# WideMelon for Android
+Play DS games without the black bars. WideMelon renders extra 3D at the sides of the top screen so it fills a phone
+or TV display, while the 2D HUD stays where the game put it. It is the Android version of the
+[WideMelon](https://github.com/pruefsumme/widemelon) desktop build and is based on WatermelonDS, which itself builds
+on [melonDS](https://melonds.kuribo64.net/) and the [melonDS Android port](https://github.com/rafaelvcaetano/melonDS-android)
+by rafaelvcaetano.
 
-WatermelonDS is a fork that keeps up with upstream while adding RetroAchievements (including offline play), a Vulkan
-renderer, RetroArch shader presets and full external display support, wrapped in its own visual identity.
+### Widescreen
+*  **Settings > WideMelon** has everything in one place. The defaults (Auto width, full screen bottom swap) work for
+   most phones, so you shouldn't need to touch anything
+*  Real widescreen needs the **OpenGL** renderer. Other renderers stretch the picture instead (or keep 4:3 if you prefer)
+*  The top screen fills the display. Tap the new **bottom screen** button (or map *Toggle Bottom Screen* to a
+   controller button) to switch to the touch screen and back. Floating overlay and side by side modes are available too
+*  On devices with two displays (AYN Thor and similar) the wide top screen goes on the main display and the bottom
+   screen on the second one automatically
+*  Quick toggles live in the in-game menu under **Widescreen & Screens**
+*  Some games only draw what the original 4:3 view could see, so objects can pop in at the edges. Hardcore
+   RetroAchievements sessions always run at the native width
 
+The core changes live in [pruefsumme/melonDS-android-lib](https://github.com/pruefsumme/melonDS-android-lib) on the
+`widemelon` branch.
 
-
-[<img src="https://raw.githubusercontent.com/Kunzisoft/Github-badge/main/get-it-on-github.png" alt="Get it on GitHub" height="80">](https://github.com/SapphireRhodonite/melonDS-android/releases/latest)
+[<img src="https://raw.githubusercontent.com/Kunzisoft/Github-badge/main/get-it-on-github.png" alt="Get it on GitHub" height="80">](https://github.com/pruefsumme/widemelon-android/releases/latest)
 
 <p align="center">
    <img width="450" height="400" alt="WaterMelon1" src="https://github.com/user-attachments/assets/187ea254-877e-4efd-a8dd-93a6023684ad" />
