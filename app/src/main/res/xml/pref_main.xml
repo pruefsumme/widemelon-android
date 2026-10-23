@@ -80,4 +80,11 @@
             app:icon="@drawable/ic_cheat"
             android:layout="@layout/preference_main_card"
             android:fragment="me.magnum.melonds.ui.settings.fragments.CheatsPreferencesFragment" />
+
+    <Preference
+            android:key="settings_home_about"
+            android:title="@string/about_widemelon"
+            android:summary="@string/about_widemelon_summary"
+            app:icon="@drawable/ic_info"
+            android:layout="@layout/preference_main_card" />
 </PreferenceScreen>

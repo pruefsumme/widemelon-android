@@ -1232,4 +1232,19 @@
     <string name="welcome_settings_title">Everything in one place</string>
     <string name="welcome_settings_text">Settings › WideMelon, or Widescreen &amp; Screens in the in-game menu.</string>
     <string name="welcome_start">Let\'s play</string>
+
+    <!-- About -->
+    <string name="about_widemelon">About WideMelon</string>
+    <string name="about_widemelon_summary">Version, credits, source code and license</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_links">Links</string>
+    <string name="about_source_code">Source code</string>
+    <string name="about_report_problem">Report a problem</string>
+    <string name="about_desktop_version">WideMelon for desktop</string>
+    <string name="about_show_welcome">Show the welcome screen again</string>
+    <string name="about_built_on">Built on</string>
+    <string name="about_license">License</string>
+    <string name="about_license_gpl">GNU General Public License v3</string>
+    <string name="about_license_summary">Free software, the full source code is available on GitHub</string>
+    <string name="about_trademark_notice">WideMelon is not affiliated with or endorsed by Nintendo. It does not include any games or system files.</string>
 </resources>
