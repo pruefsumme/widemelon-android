@@ -329,7 +329,14 @@ class EmulatorActivity : AppCompatActivity() {
         }
 
         override fun onSwapScreens() {
-            swapScreen()
+            // While widescreen fills a single display there is nothing to swap with, so act as the bottom screen toggle
+            if (!viewModel.toggleWidescreenBottomScreen()) {
+                swapScreen()
+            }
+        }
+
+        override fun onToggleBottomScreen() {
+            viewModel.toggleWidescreenBottomScreen()
         }
 
         override fun onQuickSave() {
@@ -831,6 +838,13 @@ class EmulatorActivity : AppCompatActivity() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.runtimeLayout.collectLatest {
                     setupSoftInput(it)
+                }
+            }
+        }
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.widescreenBottomScreenVisible.collect {
+                    binding.viewLayoutControls.setLayoutComponentToggleState(LayoutComponent.BUTTON_TOGGLE_BOTTOM_SCREEN, it)
                 }
             }
         }
@@ -1757,6 +1771,7 @@ class EmulatorActivity : AppCompatActivity() {
                 instantiateLayout(layoutConfiguration, LayoutTarget.MAIN_SCREEN)
                 setLayoutComponentToggleState(LayoutComponent.BUTTON_FAST_FORWARD_TOGGLE, frontendInputHandler.fastForwardEnabled)
                 setLayoutComponentToggleState(LayoutComponent.BUTTON_MICROPHONE_TOGGLE, frontendInputHandler.microphoneEnabled)
+                setLayoutComponentToggleState(LayoutComponent.BUTTON_TOGGLE_BOTTOM_SCREEN, viewModel.widescreenBottomScreenVisible.value)
             }
             presentation?.apply {
                 updateLayout(layoutConfiguration)
@@ -1765,7 +1780,12 @@ class EmulatorActivity : AppCompatActivity() {
             }
 
             handler.post {
+                // A swap left over from before widescreen would show the bottom screen in the wide slot
+                if (viewModel.canToggleBottomScreen.value && binding.viewLayoutControls.areScreensSwapped()) {
+                    binding.viewLayoutControls.swapScreens()
+                }
                 applyDualScreenPresetSwapState()
+                viewModel.setScreensSwapped(binding.viewLayoutControls.areScreensSwapped())
                 updateRendererScreenAreas()
                 presentation?.updateRendererScreenAreas()
                 scheduleStartupPresentationRefreshes()
@@ -1815,6 +1835,7 @@ class EmulatorActivity : AppCompatActivity() {
     private fun swapScreen() {
         binding.viewLayoutControls.swapScreens()
         presentation?.swapScreens()
+        viewModel.setScreensSwapped(binding.viewLayoutControls.areScreensSwapped())
 
         updateRendererScreenAreas()
         scheduleStartupPresentationRefreshes()

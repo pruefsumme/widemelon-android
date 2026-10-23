@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Matches the 72px PNG buttons: grey rounded square, white outlines. Two stacked screens, bottom one filled. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp"
+    android:height="72dp"
+    android:viewportWidth="72"
+    android:viewportHeight="72">
+    <path
+        android:fillColor="#808080"
+        android:pathData="M8,0h56a8,8 0,0 1,8 8v56a8,8 0,0 1,-8 8h-56a8,8 0,0 1,-8 -8v-56a8,8 0,0 1,8 -8z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:pathData="M16,12h40v20h-40z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M14.5,38.5h43v23h-43z" />
+</vector>

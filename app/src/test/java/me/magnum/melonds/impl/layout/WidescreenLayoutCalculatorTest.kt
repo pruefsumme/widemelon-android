@@ -81,7 +81,16 @@ class WidescreenLayoutCalculatorTest {
         val result = WidescreenLayoutCalculator.calculate(input())
 
         val components = result.layout.mainScreenLayout.components!!
-        assertEquals(LayoutComponent.BUTTON_A, components.last().component)
+        assertTrue(components.first().isScreen())
+        assertTrue(components.drop(1).none { it.isScreen() })
+    }
+
+    @Test
+    fun toggleButtonIsAddedWhenLayoutLacksIt() {
+        val result = WidescreenLayoutCalculator.calculate(input())
+
+        val components = result.layout.mainScreenLayout.components!!
+        assertEquals(1, components.count { it.component == LayoutComponent.BUTTON_TOGGLE_BOTTOM_SCREEN })
     }
 
     @Test

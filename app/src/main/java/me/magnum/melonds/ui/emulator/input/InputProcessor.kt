@@ -80,7 +80,7 @@ class InputProcessor(private val controllerConfiguration: ControllerConfiguratio
         processChordKeyEvent(keyEvent, fromController)?.let { return it }
         val input = controllerConfiguration.keyToInput(keyEvent.keyCode) ?: return false
         if (keyEvent.action == KeyEvent.ACTION_DOWN && keyEvent.repeatCount > 0
-            && (input == Input.CYCLE_LAYOUT || input == Input.EXIT_GAME)
+            && (input == Input.CYCLE_LAYOUT || input == Input.EXIT_GAME || input == Input.TOGGLE_BOTTOM_SCREEN)
         ) {
             return true
         }

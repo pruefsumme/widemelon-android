@@ -591,6 +591,7 @@
     <string name="input_dpad">DPAD</string>
     <string name="input_abxy_buttons">ABXY Buttons</string>
     <string name="input_swap_screens">Swap Screens</string>
+    <string name="input_toggle_bottom_screen">Toggle Bottom Screen</string>
     <string name="input_quick_save">Quick Save</string>
     <string name="input_quick_load">Quick Load</string>
 

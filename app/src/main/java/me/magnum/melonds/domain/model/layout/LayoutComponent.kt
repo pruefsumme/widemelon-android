@@ -18,6 +18,7 @@ enum class LayoutComponent(val matchingInputs: List<Input>) {
     BUTTON_RESET(listOf(Input.RESET)),
     BUTTON_PAUSE(listOf(Input.PAUSE)),
     BUTTON_SWAP_SCREENS(listOf(Input.SWAP_SCREENS)),
+    BUTTON_TOGGLE_BOTTOM_SCREEN(listOf(Input.TOGGLE_BOTTOM_SCREEN)),
     BUTTON_QUICK_SAVE(listOf(Input.QUICK_SAVE)),
     BUTTON_QUICK_LOAD(listOf(Input.QUICK_LOAD)),
     BUTTON_REWIND(listOf(Input.REWIND)),

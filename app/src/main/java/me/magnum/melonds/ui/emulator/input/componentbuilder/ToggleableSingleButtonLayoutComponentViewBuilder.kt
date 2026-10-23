@@ -24,6 +24,7 @@ class ToggleableSingleButtonLayoutComponentViewBuilder(private val layoutCompone
             LayoutComponent.BUTTON_FAST_FORWARD_TOGGLE -> R.drawable.button_fast_forward to R.drawable.button_fast_forward_disabled
             LayoutComponent.BUTTON_MICROPHONE_TOGGLE -> R.drawable.button_microphone to R.drawable.button_microphone_disabled
             LayoutComponent.BUTTON_TOGGLE_SOFT_INPUT -> R.drawable.ic_touch_enabled to R.drawable.ic_touch_disabled
+            LayoutComponent.BUTTON_TOGGLE_BOTTOM_SCREEN -> R.drawable.button_bottom_screen_shown to R.drawable.button_bottom_screen_hidden
             else -> null to null
         }
     }

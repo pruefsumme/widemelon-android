@@ -512,6 +512,7 @@ private fun getInputName(input: Input): String? {
         Input.MICROPHONE -> R.string.input_microphone
         Input.RESET -> R.string.input_reset
         Input.SWAP_SCREENS -> R.string.input_swap_screens
+        Input.TOGGLE_BOTTOM_SCREEN -> R.string.input_toggle_bottom_screen
         Input.QUICK_SAVE -> R.string.input_quick_save
         Input.QUICK_LOAD -> R.string.input_quick_load
         Input.REWIND -> R.string.rewind

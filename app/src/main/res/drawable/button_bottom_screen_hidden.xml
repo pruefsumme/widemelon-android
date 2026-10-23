@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Same as button_bottom_screen_shown, but the bottom screen is only a dashed outline -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp"
+    android:height="72dp"
+    android:viewportWidth="72"
+    android:viewportHeight="72">
+    <path
+        android:fillColor="#808080"
+        android:pathData="M8,0h56a8,8 0,0 1,8 8v56a8,8 0,0 1,-8 8h-56a8,8 0,0 1,-8 -8v-56a8,8 0,0 1,8 -8z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:pathData="M16,12h40v20h-40z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:pathData="M16,40h6M28,40h6M40,40h6M52,40h4v4M56,50v4M56,58v2h-4M46,60h-6M34,60h-6M22,60h-6v-4M16,50v-4M16,44v-4" />
+</vector>

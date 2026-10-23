@@ -159,8 +159,28 @@ object WidescreenLayoutCalculator {
         }
 
         // Screens first so buttons stay on top of them
-        val newLayout = input.layout.copy(mainScreenLayout = mainLayout.copy(components = screens + buttons))
+        val newLayout = input.layout.copy(mainScreenLayout = mainLayout.copy(components = screens + withToggleButton(buttons, area)))
         return Result(newLayout, viewWidth, canToggleBottomScreen = true)
+    }
+
+    /**
+     * Older or custom layouts don't have the bottom screen toggle. Without it there would be no way back to the bottom
+     * screen on a touch only device, so add one next to fast forward (or at the top centre).
+     */
+    private fun withToggleButton(buttons: List<PositionedLayoutComponent>, area: Rect): List<PositionedLayoutComponent> {
+        if (buttons.any { it.component == LayoutComponent.BUTTON_TOGGLE_BOTTOM_SCREEN }) {
+            return buttons
+        }
+
+        val anchor = buttons.firstOrNull { it.component == LayoutComponent.BUTTON_FAST_FORWARD_TOGGLE }
+        val rect = if (anchor != null) {
+            val spacing = anchor.rect.width / 10
+            Rect(anchor.rect.right + spacing, anchor.rect.y, anchor.rect.width, anchor.rect.height)
+        } else {
+            val size = area.height / 10
+            Rect(area.x + (area.width - size) / 2, area.y, size, size)
+        }
+        return buttons + PositionedLayoutComponent(rect, LayoutComponent.BUTTON_TOGGLE_BOTTOM_SCREEN)
     }
 
     private fun calculateDualDisplay(input: Input, secondaryWidth: Int, secondaryHeight: Int): Result? {
