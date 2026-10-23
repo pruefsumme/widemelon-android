@@ -112,7 +112,7 @@ class RomListFragment : Fragment() {
                         } ?: state.continuePlaying.firstOrNull { it.uri.toString() == target }
                     }
 
-                    me.magnum.melonds.ui.common.WatermelonLaunchIntro(brandIntroStartedAt, alternativeIcon, { host?.finishBrandIntro() }) {
+                    me.magnum.melonds.ui.common.WideMelonLaunchIntro(brandIntroStartedAt, alternativeIcon, { host?.finishBrandIntro() }) {
                         RomBrowserScreen(
                             state = state,
                             coverByUri = raCoverByUri,
