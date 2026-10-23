@@ -3229,8 +3229,10 @@ u32 MelonInstance::runFrame(bool frameskipSolicitado)
     int vulkanRenderScale = 1;
     if (currentRenderer == Renderer::OpenGl)
     {
-        int scale = static_cast<GLRenderer &>(nds->GPU.GetRenderer3D()).GetScaleFactor();
-        screenWidth = 256 * scale;
+        auto& glRenderer = static_cast<GLRenderer &>(nds->GPU.GetRenderer3D());
+        int scale = glRenderer.GetScaleFactor();
+        // use the width the renderer actually took, it may have refused a wide one
+        screenWidth = glRenderer.GetViewWidth() * scale;
         screenHeight = (192 + 1) * scale;
     }
     else if (currentRenderer == Renderer::Compute)
@@ -4252,6 +4254,12 @@ void MelonInstance::setSlot2AnalogInput(float x, float y)
 {
     slot2AnalogX.store(std::clamp(x, -1.0f, 1.0f), std::memory_order_relaxed);
     slot2AnalogY.store(std::clamp(y, -1.0f, 1.0f), std::memory_order_relaxed);
+}
+
+void MelonInstance::setWidescreenViewWidth(int width)
+{
+    if (requestedViewWidth.exchange(width, std::memory_order_relaxed) != width)
+        isRenderConfigurationDirty = true;
 }
 
 int MelonInstance::readAudioOutputAdaptivo(
@@ -7464,7 +7472,11 @@ void MelonInstance::updateRenderer()
         {
             auto glRenderSettings = static_cast<OpenGlRenderSettings&>(*currentConfiguration->renderSettings);
             auto& renderer3d = static_cast<GLRenderer&>(nds->GPU.GetRenderer3D());
-            renderer3d.SetRenderSettings(glRenderSettings.betterPolygons, glRenderSettings.scale);
+            renderer3d.SetRenderSettings(
+                glRenderSettings.betterPolygons,
+                glRenderSettings.scale,
+                requestedViewWidth.load(std::memory_order_relaxed));
+            nds->GPU.GPU3D.SetViewWidth(renderer3d.GetViewWidth());
             renderer3d.SetCoverageFixSettings(
                 glRenderSettings.conservativeCoverageEnabled,
                 glRenderSettings.conservativeCoveragePx,

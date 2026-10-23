@@ -305,6 +305,12 @@ object MelonEmulator {
 
     external fun setSlot2AnalogInput(x: Float, y: Float)
 
+    /**
+     * Width of the 3D view in native pixels. 256 is the stock DS picture, anything wider renders extra 3D at
+     * the sides. Only the OpenGL renderer uses it.
+     */
+    external fun setWidescreenViewWidth(width: Int)
+
     external fun takeScreenshot(): IntArray?
 
     external fun setFastForwardEnabled(enabled: Boolean)

@@ -118,6 +118,7 @@ public:
     void pressKey(u32 key);
     void releaseKey(u32 key);
     void setSlot2AnalogInput(float x, float y);
+    void setWidescreenViewWidth(int width);
     int readAudioOutputAdaptivo(
         s16* buffer, int length,
         melonDS::AudioOutputDrainObservation* observation = nullptr);
@@ -422,6 +423,7 @@ private:
     u32 inputMask;
     std::atomic<float> slot2AnalogX = 0.0f;
     std::atomic<float> slot2AnalogY = 0.0f;
+    std::atomic<int> requestedViewWidth{256};
 
     std::shared_ptr<EmulatorConfiguration> currentConfiguration;
     const bool lowLatencyEnabled;

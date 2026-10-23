@@ -212,7 +212,7 @@ jmethodID getOrInitFrameRenderMethodId(JNIEnv* env, jobject callbackObject)
     if (frameRenderCallbackClass == nullptr)
         return nullptr;
 
-    frameRenderMethodId = env->GetMethodID(frameRenderCallbackClass, "renderFrame", "(ZI)V");
+    frameRenderMethodId = env->GetMethodID(frameRenderCallbackClass, "renderFrame", "(ZII)V");
     return frameRenderMethodId;
 }
 
@@ -1780,7 +1780,7 @@ Java_me_magnum_melonds_MelonEmulator_presentFrame(JNIEnv* env, jobject thiz, jlo
                 static_cast<unsigned>(presentationFrame->backend),
                 static_cast<unsigned>(MelonDSAndroid::getCurrentRenderer())
             );
-            env->CallVoidMethod(renderFrameCallback, renderMethod, false, 0);
+            env->CallVoidMethod(renderFrameCallback, renderMethod, false, 0, 256);
             return;
         }
 
@@ -1796,18 +1796,25 @@ Java_me_magnum_melonds_MelonEmulator_presentFrame(JNIEnv* env, jobject thiz, jlo
         if (filteredTexture != 0)
             textureToPresent = filteredTexture;
 
+        // Frames are always (192+1)*2 rows per scale step, so the height tells us the scale and the
+        // width then gives back the native view width (256 unless widescreen is on).
+        jint viewWidth = 256;
+        if (presentationFrame->height > 0)
+            viewWidth = static_cast<jint>(presentationFrame->width * 386 / presentationFrame->height);
+
         env->CallVoidMethod(
             renderFrameCallback,
             renderMethod,
             true,
-            static_cast<jint>(textureToPresent)
+            static_cast<jint>(textureToPresent),
+            viewWidth
         );
         EGLSyncKHR presentFence = eglCreateSyncKHR(currentDisplay, EGL_SYNC_FENCE_KHR, nullptr);
         presentationFrame->presentFence = presentFence;
     }
     else
     {
-        env->CallVoidMethod(renderFrameCallback, renderMethod, false, 0);
+        env->CallVoidMethod(renderFrameCallback, renderMethod, false, 0, 256);
     }
 }
 
@@ -2949,6 +2956,12 @@ JNIEXPORT void JNICALL
 Java_me_magnum_melonds_MelonEmulator_setSlot2AnalogInput(JNIEnv* env, jobject thiz, jfloat x, jfloat y)
 {
     MelonDSAndroid::setSlot2AnalogInput(x, y);
+}
+
+JNIEXPORT void JNICALL
+Java_me_magnum_melonds_MelonEmulator_setWidescreenViewWidth(JNIEnv* env, jobject thiz, jint width)
+{
+    MelonDSAndroid::setWidescreenViewWidth(width);
 }
 
 JNIEXPORT void JNICALL

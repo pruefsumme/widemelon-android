@@ -409,10 +409,15 @@ namespace MelonDSAndroid
         return instance;
     }
 
+    // Kept here so a width picked before the game starts survives into the new instance
+    std::atomic<int> widescreenViewWidth{256};
+
     void ReplaceInstance(std::shared_ptr<MelonInstance> replacement)
     {
         std::lock_guard lock(instanceLifetimeMutex);
         instance = std::move(replacement);
+        if (instance)
+            instance->setWidescreenViewWidth(widescreenViewWidth.load());
     }
 
     bool ensureOpenGlContext()
@@ -791,6 +796,13 @@ namespace MelonDSAndroid
     {
         if (instance)
             instance->setSlot2AnalogInput(x, y);
+    }
+
+    void setWidescreenViewWidth(int width)
+    {
+        widescreenViewWidth.store(width);
+        if (auto current = GetInstanceSnapshot())
+            current->setWidescreenViewWidth(width);
     }
 
     void start()

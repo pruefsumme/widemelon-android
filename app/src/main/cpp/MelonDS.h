@@ -160,6 +160,7 @@ namespace MelonDSAndroid {
     extern void pressKey(u32 key);
     extern void releaseKey(u32 key);
     extern void setSlot2AnalogInput(float x, float y);
+    extern void setWidescreenViewWidth(int width);
     extern void start();
 
     extern u32 loop(bool frameskipSolicitado, int frameskipModo, int frameskipManualN, bool drsActivo, bool drsDeuda);
