@@ -694,7 +694,12 @@ class EmulatorActivity : AppCompatActivity() {
                         val externalFillWidth by viewModel.dualScreenExternalFillWidthEnabled.collectAsState()
                         val internalAlignmentOverride by viewModel.dualScreenInternalVerticalAlignmentOverride.collectAsState()
                         val externalAlignmentOverride by viewModel.dualScreenExternalVerticalAlignmentOverride.collectAsState()
+                        val widescreenConfiguration by viewModel.widescreenConfiguration.collectAsState()
                         me.magnum.melonds.ui.emulator.ui.ConsolePresetsOverlay(
+                            widescreenMode = widescreenConfiguration.mode,
+                            onWidescreenModeSelected = { mode -> viewModel.setWidescreenMode(mode) },
+                            bottomScreenMode = widescreenConfiguration.bottomScreenMode,
+                            onBottomScreenModeSelected = { mode -> viewModel.setBottomScreenMode(mode) },
                             dualScreenPreset = preset,
                             onDualScreenPresetSelected = { selectedPreset ->
                                 viewModel.setDualScreenPreset(selectedPreset)

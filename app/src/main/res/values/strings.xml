@@ -655,7 +655,7 @@
     <string name="dual_screen_vertical_alignment_summary">Internal: %1$s • External: %2$s</string>
     <string name="dual_screen_vertical_alignment_preset_value">Preset (%1$s)</string>
     <string name="dual_screen_vertical_alignment_default_hint">Preset defaults — Internal: %1$s • External: %2$s</string>
-    <string name="presets">Dual Screen Presets</string>
+    <string name="presets">Widescreen &amp; Screens</string>
     <string name="layout_editing_disabled_by_presets">Layouts can not be edited while a dual screen preset is active.</string>
     <string name="above_other_screen">Above other screen</string>
     <string name="center_horizontal">Center horizontally</string>

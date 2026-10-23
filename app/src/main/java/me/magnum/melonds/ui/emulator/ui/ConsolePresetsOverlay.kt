@@ -49,13 +49,16 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.input.key.type
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import me.magnum.melonds.R
+import me.magnum.melonds.domain.model.BottomScreenMode
 import me.magnum.melonds.domain.model.DualScreenPreset
+import me.magnum.melonds.domain.model.WidescreenMode
 import me.magnum.melonds.domain.model.ScreenAlignment
 import me.magnum.melonds.ui.common.GamepadHint
 import me.magnum.melonds.ui.common.GamepadHintsFooter
@@ -69,6 +72,10 @@ private enum class PresetsScreen { MAIN, FILL_AREA, VERTICAL_ALIGNMENT }
 
 @Composable
 fun ConsolePresetsOverlay(
+    widescreenMode: WidescreenMode,
+    onWidescreenModeSelected: (WidescreenMode) -> Unit,
+    bottomScreenMode: BottomScreenMode,
+    onBottomScreenModeSelected: (BottomScreenMode) -> Unit,
     dualScreenPreset: DualScreenPreset,
     onDualScreenPresetSelected: (DualScreenPreset) -> Unit,
     keepAspectRatio: Boolean,
@@ -97,7 +104,7 @@ fun ConsolePresetsOverlay(
 
     ConsoleScaffold(
         title = when (screen) {
-            PresetsScreen.MAIN -> stringResource(R.string.dual_screen_presets)
+            PresetsScreen.MAIN -> stringResource(R.string.presets)
             PresetsScreen.FILL_AREA -> stringResource(R.string.dual_screen_fill_area_title)
             PresetsScreen.VERTICAL_ALIGNMENT -> stringResource(R.string.dual_screen_vertical_alignment_title)
         },
@@ -105,6 +112,29 @@ fun ConsolePresetsOverlay(
     ) {
         when (screen) {
             PresetsScreen.MAIN -> {
+                // Tapping a row steps to the next option, the full list lives in Settings > WideMelon
+                val widescreenLabels = stringArrayResource(R.array.widescreen_mode_options)
+                val bottomScreenLabels = stringArrayResource(R.array.widescreen_bottom_screen_mode_options)
+                ConsoleSectionLabel(stringResource(R.string.category_widemelon))
+                ConsoleRow(
+                    label = stringResource(R.string.widescreen),
+                    focusRequester = rememberFirstFocus(),
+                    onClick = { onWidescreenModeSelected(nextWidescreenMode(widescreenMode)) },
+                ) {
+                    ConsoleValueText(widescreenLabels[widescreenMode.ordinal])
+                }
+                ConsoleRow(
+                    label = stringResource(R.string.widescreen_bottom_screen),
+                    enabled = widescreenMode != WidescreenMode.OFF,
+                    onClick = {
+                        val modes = BottomScreenMode.entries
+                        onBottomScreenModeSelected(modes[(bottomScreenMode.ordinal + 1) % modes.size])
+                    },
+                ) {
+                    ConsoleValueText(bottomScreenLabels[bottomScreenMode.ordinal])
+                }
+                Spacer(Modifier.height(6.dp))
+
                 val presetSelected = dualScreenPreset != DualScreenPreset.OFF
                 if (!presetSelected) {
                     ConsoleSectionLabel(stringResource(R.string.dual_screen_presets_disabled_hint))
@@ -119,7 +149,6 @@ fun ConsolePresetsOverlay(
                     ConsoleRow(
                         label = label,
                         selected = preset == dualScreenPreset,
-                        focusRequester = if (index == 0) rememberFirstFocus() else null,
                         onClick = { onDualScreenPresetSelected(preset) },
                     ) {
                         if (preset == dualScreenPreset) {
@@ -278,6 +307,26 @@ private fun ConsoleScaffold(
             )
         }
     }
+}
+
+// Custom only makes sense with the slider in Settings, so the quick toggle skips it
+private fun nextWidescreenMode(current: WidescreenMode): WidescreenMode {
+    return when (current) {
+        WidescreenMode.OFF -> WidescreenMode.AUTO
+        WidescreenMode.AUTO -> WidescreenMode.WIDE_16_9
+        WidescreenMode.WIDE_16_9 -> WidescreenMode.WIDE_21_9
+        WidescreenMode.WIDE_21_9, WidescreenMode.CUSTOM -> WidescreenMode.OFF
+    }
+}
+
+@Composable
+private fun ConsoleValueText(text: String) {
+    Text(
+        text = text,
+        color = Color.White.copy(alpha = 0.7f),
+        fontSize = 12.5.sp,
+        maxLines = 1,
+    )
 }
 
 @Composable

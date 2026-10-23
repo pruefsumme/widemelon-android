@@ -81,6 +81,8 @@ import me.magnum.melonds.domain.model.ScreenAlignment
 import me.magnum.melonds.domain.model.VideoFiltering
 import me.magnum.melonds.domain.model.VideoRenderer
 import me.magnum.melonds.domain.model.WidescreenConfiguration
+import me.magnum.melonds.domain.model.WidescreenMode
+import me.magnum.melonds.domain.model.BottomScreenMode
 import me.magnum.melonds.domain.model.defaultExternalAlignment
 import me.magnum.melonds.domain.model.defaultInternalAlignment
 import me.magnum.melonds.domain.model.emulator.EmulatorEvent
@@ -527,6 +529,12 @@ class EmulatorViewModel @Inject constructor(
 
     private val _dualScreenExternalVerticalAlignmentOverride = MutableStateFlow(settingsRepository.getDualScreenExternalVerticalAlignmentOverride())
     val dualScreenExternalVerticalAlignmentOverride = _dualScreenExternalVerticalAlignmentOverride.asStateFlow()
+
+    val widescreenConfiguration = settingsRepository.observeWidescreenConfiguration().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = settingsRepository.getWidescreenConfiguration(),
+    )
 
     private val _widescreenBottomScreenVisible = MutableStateFlow(false)
     val widescreenBottomScreenVisible = _widescreenBottomScreenVisible.asStateFlow()
@@ -2669,6 +2677,14 @@ class EmulatorViewModel @Inject constructor(
         }
         _widescreenBottomScreenVisible.update { !it }
         return true
+    }
+
+    fun setWidescreenMode(mode: WidescreenMode) {
+        settingsRepository.setWidescreenMode(mode)
+    }
+
+    fun setBottomScreenMode(mode: BottomScreenMode) {
+        settingsRepository.setBottomScreenMode(mode)
     }
 
     fun setScreensSwapped(swapped: Boolean) {
