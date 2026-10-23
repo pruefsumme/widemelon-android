@@ -29,7 +29,8 @@ sitting in a 4:3 box. The 2D HUD stays exactly where the game put it. It's the A
 **Widescreen**
 * The top screen fills the whole display. **Auto** picks the right width for your screen, or choose 16:9, 21:9 or a
   custom width
-* Real widescreen needs the **OpenGL** renderer. Other renderers stretch the picture instead, or keep 4:3 if you prefer
+* Real widescreen needs the **OpenGL** renderer, which is the default. Other renderers stretch the picture instead,
+  or keep 4:3 if you prefer
 
 **Bottom screen on demand**
 * A button in the touch overlay switches between the wide top screen and the touch screen
@@ -47,8 +48,7 @@ sitting in a 4:3 box. The 2D HUD stays exactly where the game put it. It's the A
 ## Getting started
 
 1. Install the APK from the [releases page](https://github.com/pruefsumme/widemelon-android/releases/latest)
-2. Set the renderer to **OpenGL** in *Settings > Video*
-3. Start a game. That's it. Fine tuning lives in **Settings > WideMelon**, quick toggles in the in-game menu under
+2. Start a game. That's it, OpenGL is the default renderer so widescreen works out of the box. Fine tuning lives in **Settings > WideMelon**, quick toggles in the in-game menu under
    **Widescreen & Screens**
 
 WideMelon installs next to WatermelonDS and melonDS, it doesn't replace them. Nightly builds install next to the stable

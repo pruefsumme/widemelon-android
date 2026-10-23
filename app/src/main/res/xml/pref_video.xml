@@ -10,7 +10,7 @@
             app:iconSpaceReserved="false"
             android:entries="@array/video_renderer_options"
             android:entryValues="@array/video_renderer_values"
-            android:defaultValue="software"/>
+            android:defaultValue="opengl"/>
 
     <me.magnum.melonds.ui.settings.preferences.InGameLockedListPreference
             android:key="video_internal_resolution"

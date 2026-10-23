@@ -1150,7 +1150,7 @@ class VideoPreferencesFragment : BasePreferenceFragment(), PreferenceFragmentTit
         }
         val preferences = preferenceManager.sharedPreferences
         updateShaderPickerPreferences(
-            renderer = enumValueOfIgnoreCase(preferences?.getString("video_renderer", "software") ?: "software"),
+            renderer = enumValueOfIgnoreCase(preferences?.getString("video_renderer", "opengl") ?: "opengl"),
             filteringValue = preferences?.getString("video_filtering", "none") ?: "none",
             retroArchShaderRootPreference = shaderRootPreference,
             retroArchShaderPresetPreference = shaderPresetPreference,

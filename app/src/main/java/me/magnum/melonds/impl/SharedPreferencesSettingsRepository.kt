@@ -685,10 +685,12 @@ class SharedPreferencesSettingsRepository(
     }
 
     override fun getCurrentVideoRenderer(): VideoRenderer {
-        val videoRendererPreference = preferences.getString("video_renderer", "software")!!
+        // OpenGL by default, it's the only renderer that can do real widescreen. Devices without GLES 3.2 still
+        // end up on software through sanitizeVideoRenderer.
+        val videoRendererPreference = preferences.getString("video_renderer", "opengl")!!
         return sanitizeVideoRenderer(
             runCatching { VideoRenderer.valueOf(videoRendererPreference.uppercase()) }
-                .getOrDefault(VideoRenderer.SOFTWARE),
+                .getOrDefault(VideoRenderer.OPENGL),
             fallback = VideoRenderer.SOFTWARE,
         )
     }
