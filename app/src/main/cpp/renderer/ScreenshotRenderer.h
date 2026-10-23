@@ -27,6 +27,7 @@ private:
     GLuint screenshotRenderFragmentShader;
     GLuint screenshotRenderShader;
     GLuint textureUniformLocation;
+    GLint uvScaleXUniformLocation;
     GLuint posAttribLocation;
     GLuint texCoordAttribLocation;
     bool screenshotRequested;

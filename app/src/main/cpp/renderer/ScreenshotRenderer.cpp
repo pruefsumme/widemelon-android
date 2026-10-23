@@ -65,6 +65,12 @@ void ScreenshotRenderer::renderScreenshot(GPU* gpu, Renderer renderer, Frame* re
         glVertexAttribPointer(texCoordAttribLocation, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
         glUniform1i(textureUniformLocation, 0);
 
+        // Screenshots and thumbnails stay at the native 256 width, so wide frames only keep the middle
+        float uvScaleX = 1.0f;
+        if (renderFrame->width > 0 && renderFrame->height > 0)
+            uvScaleX = std::min(1.0f, (256.0f * renderFrame->height) / (386.0f * renderFrame->width));
+        glUniform1f(uvScaleXUniformLocation, uvScaleX);
+
         glDrawArrays(GL_TRIANGLES, 0, 12);
 
         glBindBuffer(GL_PIXEL_PACK_BUFFER, 0);
@@ -131,10 +137,11 @@ void ScreenshotRenderer::setupShaders()
             "#version 100\n"
             "attribute vec2 aTexCoord;\n"
             "attribute vec2 aPosition;\n"
+            "uniform float uUvScaleX;\n"
             "varying vec2 vTexCoord;\n"
             "void main() {\n"
             "    gl_Position = vec4(aPosition, 0.0, 1.0);\n"
-            "    vTexCoord = aTexCoord;\n"
+            "    vTexCoord = vec2(0.5 + (aTexCoord.x - 0.5) * uUvScaleX, aTexCoord.y);\n"
             "}\n";
     const char *fragmentShaderSource =
             "#version 100\n"
@@ -210,6 +217,7 @@ void ScreenshotRenderer::setupShaders()
     posAttribLocation = glGetAttribLocation(screenshotRenderShader, "aPosition");
     texCoordAttribLocation = glGetAttribLocation(screenshotRenderShader, "aTexCoord");
     textureUniformLocation = glGetUniformLocation(screenshotRenderShader, "sTexture");
+    uvScaleXUniformLocation = glGetUniformLocation(screenshotRenderShader, "uUvScaleX");
 }
 
 void ScreenshotRenderer::setupVertexBuffers()
