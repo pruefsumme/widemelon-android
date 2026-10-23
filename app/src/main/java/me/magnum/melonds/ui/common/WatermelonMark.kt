@@ -4,6 +4,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.Dp
@@ -22,14 +23,12 @@ internal fun ImageBitmap.watermelonLogoBounds() = IntRect(
 
 @Composable
 fun WatermelonMark(modifier: Modifier = Modifier, width: Dp = 38.dp) {
-    val image = ImageBitmap.imageResource(R.drawable.watermelon_library)
-    val bounds = image.watermelonLogoBounds()
-    Canvas(modifier.size(width, width * (908f / 1853f))) {
+    val image = ImageBitmap.imageResource(R.drawable.widemelon_logo)
+    Canvas(modifier.size(width, width * image.height / image.width)) {
         drawImage(
             image,
-            srcOffset = bounds.topLeft,
-            srcSize = bounds.size,
             dstSize = IntSize(size.width.roundToInt(), size.height.roundToInt()),
+            filterQuality = FilterQuality.High,
         )
     }
 }

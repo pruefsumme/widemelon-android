@@ -396,24 +396,13 @@ fun ExternalIdleInfo() {
         modifier = Modifier.fillMaxSize().padding(horizontal = 60.dp, vertical = 30.dp),
     ) {
         WatermelonMark(width = 84.dp)
-        Row(modifier = Modifier.padding(top = 16.dp)) {
-            Text(
-                text = stringResource(R.string.app_brand_watermelon),
-                color = Color.White,
-                fontFamily = SpaceGrotesk,
-                fontSize = 34.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = (-0.5).sp,
-            )
-            Text(
-                text = stringResource(R.string.app_brand_ds),
-                color = Color(0xFF6FBF4A),
-                fontFamily = SpaceGrotesk,
-                fontSize = 34.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = (-0.5).sp,
-            )
-        }
+        WideMelonWordmark(
+            color = Color.White,
+            accent = Color(0xFF6FBF4A),
+            fontSize = 34.sp,
+            letterSpacing = (-0.5).sp,
+            modifier = Modifier.padding(top = 16.dp),
+        )
     }
 }
 

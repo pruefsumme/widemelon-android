@@ -274,8 +274,8 @@
     <string name="pause_hint_accept">Accept</string>
     <string name="pause_hint_resume">Resume</string>
     <string name="pause_hint_back">Back</string>
-    <string name="app_brand_watermelon" translatable="false">Wide</string>
-    <string name="app_brand_ds" translatable="false">Melon</string>
+    <string name="app_brand_wide" translatable="false">Wide</string>
+    <string name="app_brand_melon" translatable="false">Melon</string>
     <string name="external_hint_open">Open</string>
     <string name="external_hint_favorite">Favorite</string>
     <string name="save_state_slot_quick">QUICK</string>

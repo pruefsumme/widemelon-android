@@ -79,6 +79,7 @@ import me.magnum.melonds.domain.model.SortingMode
 import me.magnum.melonds.domain.model.SortingOrder
 import me.magnum.melonds.domain.model.rom.Rom
 import me.magnum.melonds.ui.common.WatermelonMark
+import me.magnum.melonds.ui.common.WideMelonWordmark
 import me.magnum.melonds.ui.theme.SpaceGrotesk
 import me.magnum.melonds.ui.theme.WatermelonMono
 import me.magnum.melonds.ui.theme.watermelon
@@ -163,24 +164,12 @@ fun WatermelonLibraryHeader(
                     width = 38.dp,
                 )
                 Spacer(Modifier.width(10.dp))
-                Row(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = "Watermelon",
-                        color = colors.text,
-                        fontFamily = SpaceGrotesk,
-                        fontSize = 21.sp,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = (-0.3).sp,
-                    )
-                    Text(
-                        text = "DS",
-                        color = colors.green,
-                        fontFamily = SpaceGrotesk,
-                        fontSize = 21.sp,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = (-0.3).sp,
-                    )
-                }
+                WideMelonWordmark(
+                    color = colors.text,
+                    accent = colors.green,
+                    fontSize = 21.sp,
+                    modifier = Modifier.weight(1f),
+                )
                 IconButton(onClick = { searchOpen = true; onSearchQueryChanged("") }, modifier = Modifier.size(42.dp)) {
                     Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.action_search_roms), tint = colors.text2, modifier = Modifier.size(22.dp))
                 }

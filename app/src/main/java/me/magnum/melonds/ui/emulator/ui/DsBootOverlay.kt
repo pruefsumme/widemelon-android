@@ -50,6 +50,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
+import me.magnum.melonds.ui.common.WideMelonWordmark
 import me.magnum.melonds.ui.theme.SpaceGrotesk
 import me.magnum.melonds.ui.theme.WatermelonColors
 import me.magnum.melonds.ui.theme.WatermelonMono
@@ -240,27 +241,13 @@ private fun DsScreen(
 
 @Composable
 private fun DsWordmark(alpha: Float) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
+    WideMelonWordmark(
+        color = Color(0xFFC8D0DC),
+        accent = watermelon.green,
+        fontSize = 20.sp,
+        letterSpacing = 0.sp,
         modifier = Modifier.alpha(alpha),
-    ) {
-        Text(
-            text = "Watermelon",
-            color = Color(0xFFC8D0DC),
-            fontFamily = SpaceGrotesk,
-            fontWeight = FontWeight.Bold,
-            fontSize = 20.sp,
-            lineHeight = 20.sp,
-        )
-        Text(
-            text = "DS",
-            color = watermelon.green,
-            fontFamily = SpaceGrotesk,
-            fontWeight = FontWeight.Bold,
-            fontSize = 20.sp,
-            lineHeight = 20.sp,
-        )
-    }
+    )
 }
 
 @Composable
