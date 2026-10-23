@@ -11,6 +11,7 @@ import me.magnum.melonds.common.opengl.VideoFilterShaderProvider
 import me.magnum.melonds.domain.model.Rect
 import me.magnum.melonds.domain.model.RuntimeBackground
 import me.magnum.melonds.domain.model.SCREEN_HEIGHT
+import me.magnum.melonds.domain.model.SCREEN_WIDTH
 import me.magnum.melonds.domain.model.VideoFiltering
 import me.magnum.melonds.domain.model.layout.BackgroundMode
 import me.magnum.melonds.domain.model.render.PresentFrameWrapper
@@ -58,6 +59,7 @@ class DSRenderer(private val context: Context) : EmulatorRenderer {
 
     private var width = 0f
     private var height = 0f
+    private var frameViewWidth = SCREEN_WIDTH
 
     private var backgroundWidth = 0
     private var backgroundHeight = 0
@@ -180,13 +182,17 @@ class DSRenderer(private val context: Context) : EmulatorRenderer {
             1f, 0.5f - lineRelativeSize,
         )
 
+        // Wide frames only have extra content on the top screen. The bottom screen is still 256 pixels wide,
+        // centered in the frame, so crop to that
+        val bottomLeft = (1f - SCREEN_WIDTH.toFloat() / frameViewWidth) / 2f
+        val bottomRight = 1f - bottomLeft
         val bottomUvs = floatArrayOf(
-            0f, 1f,
-            0f, 0.5f + lineRelativeSize,
-            1f, 0.5f + lineRelativeSize,
-            0f, 1f,
-            1f, 0.5f + lineRelativeSize,
-            1f, 1f,
+            bottomLeft, 1f,
+            bottomLeft, 0.5f + lineRelativeSize,
+            bottomRight, 0.5f + lineRelativeSize,
+            bottomLeft, 1f,
+            bottomRight, 0.5f + lineRelativeSize,
+            bottomRight, 1f,
         )
 
         data class ScreenDrawTarget(
@@ -285,6 +291,11 @@ class DSRenderer(private val context: Context) : EmulatorRenderer {
 
         if (!presentFrameWrapper.isValidFrame) {
             return
+        }
+
+        if (presentFrameWrapper.viewWidth != frameViewWidth) {
+            frameViewWidth = presentFrameWrapper.viewWidth
+            updateScreenCoordinates()
         }
 
         synchronized(backgroundLock) {
