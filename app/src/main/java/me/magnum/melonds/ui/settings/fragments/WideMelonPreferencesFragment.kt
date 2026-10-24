@@ -1,7 +1,9 @@
 package me.magnum.melonds.ui.settings.fragments
 
 import android.os.Bundle
+import androidx.core.content.edit
 import androidx.preference.ListPreference
+import androidx.preference.Preference
 import androidx.preference.SeekBarPreference
 import me.magnum.melonds.R
 import me.magnum.melonds.ui.settings.PreferenceFragmentTitleProvider
@@ -58,6 +60,27 @@ class WideMelonPreferencesFragment : BasePreferenceFragment(), PreferenceFragmen
         overlaySizePreference.summary = getString(R.string.widescreen_percentage, overlaySizePreference.value)
         overlayOpacityPreference.summary = getString(R.string.widescreen_percentage, overlayOpacityPreference.value)
         updateVisibility()
+        setupNotice()
+    }
+
+    private fun setupNotice() {
+        val notice = findPreference<Preference>("widescreen_notice") ?: return
+        val preferences = preferenceManager.sharedPreferences ?: return
+        if (preferences.getBoolean(KEY_NOTICE_DISMISSED, false)) {
+            notice.isVisible = false
+            return
+        }
+
+        notice.summary = listOf(
+            getString(R.string.widescreen_compatibility_note),
+            getString(R.string.widescreen_photosensitivity_note),
+            getString(R.string.widescreen_notice_dismiss_hint),
+        ).joinToString("\n\n")
+        notice.setOnPreferenceClickListener {
+            preferences.edit { putBoolean(KEY_NOTICE_DISMISSED, true) }
+            notice.isVisible = false
+            true
+        }
     }
 
     private fun updateVisibility(
@@ -70,5 +93,9 @@ class WideMelonPreferencesFragment : BasePreferenceFragment(), PreferenceFragmen
         overlaySizePreference.isVisible = enabled && bottomScreenMode == "overlay"
         overlayOpacityPreference.isVisible = enabled && bottomScreenMode == "overlay"
         fallbackPreference.isVisible = enabled
+    }
+
+    private companion object {
+        const val KEY_NOTICE_DISMISSED = "widescreen_notice_dismissed"
     }
 }
