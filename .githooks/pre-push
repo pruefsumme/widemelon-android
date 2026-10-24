@@ -1,0 +1,10 @@
+#!/bin/sh
+# Runs the same checks as CI before anything leaves this machine.
+# Enable once with: git config core.hooksPath .githooks
+# Skip in a hurry with: git push --no-verify
+
+echo "pre-push: running ./gradlew :app:verify"
+./gradlew -q :app:verify || {
+    echo "pre-push: verify failed, push aborted (use --no-verify to push anyway)"
+    exit 1
+}

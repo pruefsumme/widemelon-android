@@ -35,12 +35,8 @@ jobs:
       - name: Set up Rust
         run: rustup toolchain install stable --profile minimal
 
-      - name: Unit tests
-        run: ./gradlew :app:testGitHubProdReleaseUnitTest
-
-      # release builds run the fatal lint checks, debug builds don't
-      - name: Release lint
-        run: ./gradlew :app:lintVitalGitHubProdRelease
+      - name: Verify
+        run: ./gradlew :app:verify
 
       - name: Build debug APK
         run: ./gradlew :app:assembleGitHubProdDebug

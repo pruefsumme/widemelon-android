@@ -516,6 +516,14 @@ val buildLibrashaderAndroid by tasks.registering {
     outputs.dir(layout.buildDirectory.dir("generated/librashader"))
 }
 
+// One command for "is this safe to push": unit tests plus the fatal lint checks that otherwise only run when
+// a release APK is assembled. CI runs exactly this, so a green local run means a green build.
+tasks.register("verify") {
+    group = "verification"
+    description = "Runs the unit tests and release lint checks"
+    dependsOn("testGitHubProdReleaseUnitTest", "lintVitalGitHubProdRelease")
+}
+
 tasks.named("preBuild").configure {
     dependsOn(regenerateVulkanSpirv)
     dependsOn(buildLibrashaderAndroid)

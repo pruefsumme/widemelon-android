@@ -49,8 +49,8 @@ jobs:
             echo "MELONDS_KEY_PASSWORD=$WIDEMELON_KEYSTORE_PASSWORD"
           } >> local.properties
 
-      - name: Unit tests
-        run: ./gradlew :app:testGitHubProdReleaseUnitTest
+      - name: Verify
+        run: ./gradlew :app:verify
 
       - name: Build nightly APK
         run: |

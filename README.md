@@ -87,8 +87,10 @@ cd widemelon-android
 ./gradlew :app:assembleGitHubProdDebug
 ```
 
-The APK ends up in `app/build/outputs/apk/gitHubProd/debug`. Unit tests run with
-`./gradlew :app:testGitHubProdReleaseUnitTest`.
+The APK ends up in `app/build/outputs/apk/gitHubProd/debug`.
+
+Before pushing, run `./gradlew :app:verify`. It runs the unit tests and the release lint checks, the same as CI. To have
+it run automatically on every `git push`, enable the bundled hook once with `git config core.hooksPath .githooks`.
 
 For signed release builds add these to `local.properties`:
 
