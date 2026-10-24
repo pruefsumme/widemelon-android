@@ -915,8 +915,6 @@
     <string name="pause_hint_accept">确认</string>
     <string name="pause_hint_resume">继续</string>
     <string name="pause_hint_back">返回</string>
-    <string name="app_brand_watermelon" translatable="false">Watermelon</string>
-    <string name="app_brand_ds" translatable="false">DS</string>
     <string name="external_hint_open">打开</string>
     <string name="external_hint_favorite">收藏</string>
     <string name="save_state_slot_quick">快速</string>
