@@ -38,6 +38,10 @@ jobs:
       - name: Unit tests
         run: ./gradlew :app:testGitHubProdReleaseUnitTest
 
+      # release builds run the fatal lint checks, debug builds don't
+      - name: Release lint
+        run: ./gradlew :app:lintVitalGitHubProdRelease
+
       - name: Build debug APK
         run: ./gradlew :app:assembleGitHubProdDebug
 
