@@ -100,7 +100,16 @@ fun WelcomeScreen(hasSecondScreen: Boolean, onDone: () -> Unit) {
                 )
             }
 
-            Spacer(Modifier.height(24.dp))
+            Spacer(Modifier.height(16.dp))
+            Text(
+                text = stringResource(R.string.widescreen_compatibility_note) + "\n\n" + stringResource(R.string.widescreen_photosensitivity_note),
+                color = colors.text3,
+                fontSize = 12.sp,
+                lineHeight = 16.sp,
+                textAlign = TextAlign.Center,
+            )
+
+            Spacer(Modifier.height(20.dp))
             val focusRequester = remember { FocusRequester() }
             RequestInitialFocus(focusRequester)
             Box(

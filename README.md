@@ -56,8 +56,11 @@ version too.
 
 ## Good to know
 
-* Some games only draw what fits in the original 4:3 view, so objects can pop in or be missing at the edges. That's
-  the game, not a bug in the emulator. Switch widescreen off for those
+* DS games were only designed for a 4:3 screen. Some only draw what fits in that view, so the sides can stay empty,
+  objects can pop in at the edges, or the picture can flicker. That's down to how the game was made. Switch
+  widescreen off for those games (in-game menu › *Widescreen & Screens*)
+* **Photosensitivity warning:** flickering can trigger seizures in people with photosensitive epilepsy. If a game
+  flickers, turn widescreen off
 * 2D only scenes (menus, maps) keep black bars on the sides, since there is no 3D to extend
 * Hardcore RetroAchievements sessions always run at the native width, so results stay fair
 * Dual screen support is written against the AYN Thor display setup but hasn't been tested on real hardware yet.

@@ -1247,4 +1247,9 @@
     <string name="about_license_gpl">GNU General Public License v3</string>
     <string name="about_license_summary">Free software, the full source code is available on GitHub</string>
     <string name="about_trademark_notice">WideMelon is not affiliated with or endorsed by Nintendo. It does not include any games or system files.</string>
+
+    <!-- Widescreen compatibility notice -->
+    <string name="widescreen_compatibility_title">Not every game is made for widescreen</string>
+    <string name="widescreen_compatibility_note">DS games were only designed for a 4:3 screen. Some of them leave the extra space empty, show objects popping in at the edges, or flicker. If a game looks wrong, switch Widescreen off in the in-game menu under Widescreen &amp; Screens.</string>
+    <string name="widescreen_photosensitivity_note">Photosensitivity warning: flickering can trigger seizures in people with photosensitive epilepsy. If you notice flickering, turn Widescreen off and take a break if you feel unwell.</string>
 </resources>

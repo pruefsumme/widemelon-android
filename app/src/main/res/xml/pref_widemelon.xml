@@ -59,6 +59,19 @@
             android:defaultValue="stretch" />
 
     <Preference
+            android:key="widescreen_compatibility_note"
+            android:title="@string/widescreen_compatibility_title"
+            android:summary="@string/widescreen_compatibility_note"
+            android:selectable="false"
+            app:iconSpaceReserved="false" />
+
+    <Preference
+            android:key="widescreen_photosensitivity_note"
+            android:summary="@string/widescreen_photosensitivity_note"
+            android:selectable="false"
+            app:iconSpaceReserved="false" />
+
+    <Preference
             android:key="widescreen_dual_screen_note"
             android:summary="@string/widescreen_dual_screen_note"
             android:selectable="false"
