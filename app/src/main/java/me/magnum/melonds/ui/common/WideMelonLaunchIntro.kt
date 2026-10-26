@@ -27,7 +27,9 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.input.pointer.pointerInput
@@ -51,6 +53,8 @@ private const val INTRO_DURATION_MS = 1300
 
 // The melon starts squeezed into a 4:3 box, the same shape as a DS screen
 private const val NARROW_SCALE = 0.73f
+
+private const val TILE_RADIUS = .62f
 
 private val LightTile = Color(0xFFF6F1E7)
 private val DarkTile = Color(0xFF1E1D24)
@@ -136,24 +140,28 @@ private fun DrawScope.drawStretch(logo: ImageBitmap, logoAspect: Float, tileColo
     // icon tile behind the melon, fades as the logo heads for the header
     val tileAlpha = 1f - t.phase(.45f, .7f)
     if (tileAlpha > 0f) {
-        drawCircle(tileColor, radius = .62f, center = centre, alpha = tileAlpha)
+        drawCircle(tileColor, radius = TILE_RADIUS, center = centre, alpha = tileAlpha)
     }
 
-    // the 4:3 "black bars", pushed outwards by the melon and gone by the end of the stretch
+    // the 4:3 "black bars", pushed outwards by the melon and gone by the end of the stretch. Clipped to the tile so
+    // they slide off its edge instead of poking out past it
     val barAlpha = (1f - t.phase(.3f, .55f)) * .85f
     if (barAlpha > 0f) {
         val barWidth = .07f
         val barHeight = logoAspect * 1.1f
         val gap = widthScale / 2f + .02f
-        repeat(2) { i ->
-            val x = if (i == 0) centre.x - gap - barWidth else centre.x + gap
-            drawRoundRect(
-                color = barColor,
-                topLeft = Offset(x, centre.y - barHeight / 2f),
-                size = Size(barWidth, barHeight),
-                cornerRadius = CornerRadius(.02f),
-                alpha = barAlpha,
-            )
+        val tile = Path().apply { addOval(Rect(centre, TILE_RADIUS)) }
+        clipPath(tile) {
+            repeat(2) { i ->
+                val x = if (i == 0) centre.x - gap - barWidth else centre.x + gap
+                drawRoundRect(
+                    color = barColor,
+                    topLeft = Offset(x, centre.y - barHeight / 2f),
+                    size = Size(barWidth, barHeight),
+                    cornerRadius = CornerRadius(.02f),
+                    alpha = barAlpha,
+                )
+            }
         }
     }
 
