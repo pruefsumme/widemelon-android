@@ -13,7 +13,7 @@
 </p>
 
 WideMelon draws the 3D in DS games wider, so the top screen fills your display instead of sitting in a 4:3 box. Menus,
-text and the HUD keep their normal size. It works for any 3D game, no widescreen cheats or patches needed.
+text and the HUD keep their normal size. No widescreen cheats or patches needed.
 
 It's the Android version of [WideMelon](https://github.com/pruefsumme/widemelon), built on WatermelonDS and
 [melonDS](https://melonds.kuribo64.net/).
