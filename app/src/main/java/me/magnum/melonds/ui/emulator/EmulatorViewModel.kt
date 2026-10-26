@@ -37,6 +37,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
@@ -857,6 +858,7 @@ class EmulatorViewModel @Inject constructor(
             startObservingSecondaryScreenBackground()
             startObservingRuntimeInputLayoutConfiguration()
             startObservingRendererConfiguration()
+            startWarningAboutWidescreenRenderer()
             startObservingEmulatorEvents()
             startObservingAchievementEvents()
             startObservingLayoutForRom()
@@ -3052,6 +3054,26 @@ class EmulatorViewModel @Inject constructor(
                     resolutionScaling = it.resolutionScaling,
                     retroArchShader = if (dropShader) it.retroArchShader.copy(presetPath = null) else it.retroArchShader,
                 )
+            }
+        }
+    }
+
+    private fun startWarningAboutWidescreenRenderer() {
+        sessionCoroutineScope.launch {
+            // Only OpenGL renders real widescreen, everything else falls back to stretching or 4:3. Say so instead of
+            // leaving people wondering why the picture still looks stretched
+            combine(
+                settingsRepository.observeWidescreenConfiguration(),
+                _runtimeRendererConfiguration.filterNotNull(),
+            ) { widescreenConfig, rendererConfig ->
+                val needsWarning = widescreenConfig.isEnabled &&
+                    rendererConfig.renderer != VideoRenderer.OPENGL &&
+                    retroAchievementsSessionMode != RetroAchievementsSessionMode.HARDCORE
+                if (needsWarning) rendererConfig.renderer else null
+            }.distinctUntilChanged().collect {
+                if (it != null) {
+                    _toastEvent.tryEmit(ToastEvent.WidescreenNeedsOpenGl(it))
+                }
             }
         }
     }

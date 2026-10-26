@@ -68,6 +68,9 @@ sealed class ToastEvent {
     data class RendererInitFailed(
         val renderer: VideoRenderer,
     ) : ToastEvent()
+    data class WidescreenNeedsOpenGl(
+        val renderer: VideoRenderer,
+    ) : ToastEvent()
     data class RendererDebugCaptureLogged(
         val captureId: String,
     ) : ToastEvent()

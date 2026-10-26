@@ -1047,13 +1047,10 @@ class EmulatorActivity : AppCompatActivity() {
                             getString(R.string.offline_ra_sync_skipped_summary_toast, it.skippedCount) to Toast.LENGTH_LONG
                         }
                         is ToastEvent.RendererInitFailed -> {
-                            val rendererLabel = when (it.renderer) {
-                                VideoRenderer.SOFTWARE -> "Software"
-                                VideoRenderer.OPENGL -> "OpenGL"
-                                VideoRenderer.VULKAN -> "Vulkan"
-                                VideoRenderer.COMPUTE -> "Compute"
-                            }
-                            getString(R.string.renderer_init_failed_message, rendererLabel) to Toast.LENGTH_LONG
+                            getString(R.string.renderer_init_failed_message, rendererLabel(it.renderer)) to Toast.LENGTH_LONG
+                        }
+                        is ToastEvent.WidescreenNeedsOpenGl -> {
+                            getString(R.string.widescreen_needs_opengl_toast, rendererLabel(it.renderer)) to Toast.LENGTH_LONG
                         }
                         is ToastEvent.RendererDebugCaptureLogged -> {
                             getString(R.string.renderer_debug_capture_logged, it.captureId) to Toast.LENGTH_LONG
@@ -4249,3 +4246,12 @@ private val renderer2DDebugObjectOrderItems = listOf(
         description = "OAM entries 96-127. Code gate: `sprnum / 32` in `DrawSprites`; highest OBJ indices are drawn first for equal priority and usually sit furthest back.",
     ),
 )
+
+private fun rendererLabel(renderer: VideoRenderer): String {
+    return when (renderer) {
+        VideoRenderer.SOFTWARE -> "Software"
+        VideoRenderer.OPENGL -> "OpenGL"
+        VideoRenderer.VULKAN -> "Vulkan"
+        VideoRenderer.COMPUTE -> "Compute"
+    }
+}

@@ -57,6 +57,7 @@ object MigrationModule {
             registerMigration(Migration36to37(genericJsonArrayMigrationHelper))
             registerMigration(Migration39to40(context))
             registerMigration(Migration40to41(sharedPreferences))
+            registerMigration(Migration42to43(sharedPreferences))
         }
     }
 }
