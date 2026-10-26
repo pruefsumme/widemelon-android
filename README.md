@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="app/src/main/res/drawable-nodpi/watermelon_icon_default.png" width="160" alt="WideMelon">
+  <img src="app/src/main/res/drawable-nodpi/watermelon_icon_default.png" width="140" alt="WideMelon">
 </p>
 
 <h1 align="center">WideMelon for Android</h1>
@@ -12,76 +12,70 @@
   <a href="https://github.com/pruefsumme/widemelon">Desktop version</a>
 </p>
 
-<p align="center">
-  <a href="https://github.com/pruefsumme/widemelon-android/actions/workflows/nightly.yaml"><img src="https://github.com/pruefsumme/widemelon-android/actions/workflows/nightly.yaml/badge.svg" alt="Nightly"></a>
-  <a href="https://github.com/pruefsumme/widemelon-android/releases/latest"><img src="https://img.shields.io/github/v/release/pruefsumme/widemelon-android?include_prereleases&label=release" alt="Release"></a>
-</p>
+WideMelon draws the 3D in DS games wider, so the top screen fills your display instead of sitting in a 4:3 box. Menus,
+text and the HUD keep their normal size. It works for any 3D game, no widescreen cheats or patches needed.
 
----
-
-WideMelon renders the 3D world wider than the DS ever did, so the top screen fills a modern phone or TV instead of
-sitting in a 4:3 box. The 2D HUD stays exactly where the game put it. It's the Android counterpart of the
-[WideMelon desktop build](https://github.com/pruefsumme/widemelon), built on top of WatermelonDS and
+It's the Android version of [WideMelon](https://github.com/pruefsumme/widemelon), built on WatermelonDS and
 [melonDS](https://melonds.kuribo64.net/).
-
-## Features
-
-**Widescreen**
-* The top screen fills the whole display. **Auto** picks the right width for your screen, or choose 16:9, 21:9 or a
-  custom width
-* Real widescreen needs the **OpenGL** renderer, which is the default since 1.1.0 (installs from 1.0.0 are switched
-  over on update). Other renderers stretch the picture instead, or keep 4:3 if you prefer, and the game tells you so
-  when it starts
-
-**Bottom screen on demand**
-* A button in the touch overlay switches between the wide top screen and the touch screen
-* With a controller, map *Toggle Bottom Screen* to any button in the input settings
-* Pick how it shows up: **full screen swap** (default), a **floating overlay** in the corner, or **side by side**
-
-**Dual screen devices**
-* On handhelds with two displays, like the AYN Thor, the wide top screen goes on the main display and the bottom
-  screen on the second one automatically
-
-**Everything from WatermelonDS**
-* RetroAchievements with offline play, Vulkan and compute renderers, RetroArch shader presets, external display
-  support, layout editor, DSiWare and more
 
 ## Getting started
 
-1. Install the APK from the [releases page](https://github.com/pruefsumme/widemelon-android/releases/latest)
-2. Start a game. That's it, OpenGL is the default renderer so widescreen works out of the box. If the picture still
-   looks stretched, check **Settings > Video > Renderer** and the game's own settings, both need to be OpenGL. Fine tuning lives in **Settings > WideMelon**, quick toggles in the in-game menu under
-   **Widescreen & Screens**
+<p align="center">
+  <img src="docs/screenshots/phone.jpg" width="720" alt="Pokémon HeartGold/SoulSilver in widescreen on a phone">
+  <br>
+  <sub>On a phone</sub>
+</p>
 
-WideMelon installs next to WatermelonDS and melonDS, it doesn't replace them. Nightly builds install next to the stable
+Install the APK from the [releases page](https://github.com/pruefsumme/widemelon-android/releases/latest), pick your
+ROM folder and start a game. Widescreen is on by default.
+
+WideMelon installs next to melonDS and WatermelonDS, it doesn't replace them. The nightly installs next to the stable
 version too.
+
+## Settings worth knowing
+
+- **Renderer:** widescreen only works with OpenGL, which is the default. Vulkan and the others stretch the picture or
+  keep 4:3. A game can also have its own renderer set under *ROM Config & Details*, which overrides the global one.
+- **Width:** *Auto* matches your screen. 16:9, 21:9 and a custom width are there too, but anything wider than your
+  screen adds black bars.
+- **Bottom screen:** tap the toggle button in game, or map *Toggle Bottom Screen* to a controller button. It can
+  replace the top screen, float in a corner or sit beside it.
+- **Two screens:** on handhelds like the AYN Thor the bottom screen goes on the second display by itself.
+- **Black lines in Pokémon maps:** turn on *Settings › Video › Conservative coverage fix*.
+
+Everything widescreen related is in *Settings › WideMelon*, and in game under *Widescreen & Screens*.
 
 ## Good to know
 
-* DS games were only designed for a 4:3 screen. Some only draw what fits in that view, so the sides can stay empty,
-  objects can pop in at the edges, or the picture can flicker. That's down to how the game was made. Switch
-  widescreen off for those games (in-game menu › *Widescreen & Screens*)
-* **Photosensitivity warning:** flickering can trigger seizures in people with photosensitive epilepsy. If a game
-  flickers, turn widescreen off
-* 2D only scenes (menus, maps) keep black bars on the sides, since there is no 3D to extend
-* Hardcore RetroAchievements sessions always run at the native width, so results stay fair
-* Dual screen support is written against the AYN Thor display setup but hasn't been tested on real hardware yet.
-  Reports are welcome
+- DS games were made for 4:3. Some don't draw anything past those edges, so you might see empty sides, things popping
+  in or flicker. If a game looks wrong, turn widescreen off for it.
+- **Photosensitivity warning:** flicker can trigger seizures in people with photosensitive epilepsy. If a game
+  flickers, turn widescreen off.
+- Scenes without any 3D keep black bars, there's nothing to widen.
+- Hardcore RetroAchievements always runs at the normal width so it stays fair.
 
-## Third party frontends
+Everything else from WatermelonDS is still here: RetroAchievements, shaders, the layout editor, DSiWare and more.
 
-Launch WideMelon from ES-DE, Daijishō and similar with:
+<p align="center">
+  <img src="docs/screenshots/ayn-thor.jpg" width="360" alt="A Pokémon battle in widescreen on an AYN Thor">
+  <br>
+  <sub>On an AYN Thor, photo by <a href="https://github.com/darreoncollins">@darreoncollins</a></sub>
+</p>
 
-* Package: `io.github.pruefsumme.widemelon` (nightly: `io.github.pruefsumme.widemelon.nightly`)
-* Activity: `me.magnum.melonds.ui.emulator.EmulatorActivity`
-* Intent data: the ROM URI (ZIP and 7z work too) with read permission granted
+## Launching from a frontend
 
-The ROM has to be scanned by WideMelon first, otherwise saves go to `Android/data/io.github.pruefsumme.widemelon/files/saves`.
+For ES-DE, Daijishō and similar:
+
+- Package: `io.github.pruefsumme.widemelon` (nightly: `io.github.pruefsumme.widemelon.nightly`)
+- Activity: `me.magnum.melonds.ui.emulator.EmulatorActivity`
+- Data: the ROM URI (ZIP and 7z work), with read permission
+
+Let WideMelon scan the ROM folder first, otherwise saves end up in
+`Android/data/io.github.pruefsumme.widemelon/files/saves`.
 
 ## Building
 
-You need the Android SDK with NDK `28.0.13004108` and CMake, JDK 21 and Rust installed through
-[rustup](https://rustup.rs/) (librashader is built from source).
+You need the Android SDK with NDK `28.0.13004108` and CMake, JDK 21, and Rust from [rustup](https://rustup.rs/).
 
 ```sh
 git clone --recurse-submodules https://github.com/pruefsumme/widemelon-android.git
@@ -89,34 +83,21 @@ cd widemelon-android
 ./gradlew :app:assembleGitHubProdDebug
 ```
 
-The APK ends up in `app/build/outputs/apk/gitHubProd/debug`.
+The APK lands in `app/build/outputs/apk/gitHubProd/debug`. Run `./gradlew :app:verify` before pushing, it does the same
+checks as CI. `git config core.hooksPath .githooks` runs it on every push.
 
-Before pushing, run `./gradlew :app:verify`. It runs the unit tests and the release lint checks, the same as CI. To have
-it run automatically on every `git push`, enable the bundled hook once with `git config core.hooksPath .githooks`.
+For signed builds, add `MELONDS_KEYSTORE`, `MELONDS_KEYSTORE_PASSWORD`, `MELONDS_KEY_ALIAS` and `MELONDS_KEY_PASSWORD`
+to `local.properties`.
 
-For signed release builds add these to `local.properties`:
-
-```properties
-MELONDS_KEYSTORE=/path/to/keystore.jks
-MELONDS_KEYSTORE_PASSWORD=...
-MELONDS_KEY_ALIAS=...
-MELONDS_KEY_PASSWORD=...
-```
-
-The widescreen core changes live in [pruefsumme/melonDS-android-lib](https://github.com/pruefsumme/melonDS-android-lib)
-on the `widemelon` branch, which is checked out as a submodule.
-
-### CI
-
-* **Build** runs tests and a debug build for every branch and pull request
-* **Nightly** publishes a signed pre-release from `main`
-* **Release** publishes a signed release when a `v*` tag is pushed
+The widescreen changes to the emulator core live in
+[pruefsumme/melonDS-android-lib](https://github.com/pruefsumme/melonDS-android-lib) on the `widemelon` branch.
 
 ## Credits
 
-* [melonDS](https://github.com/melonDS-emu/melonDS) by Arisotura and contributors
-* [melonDS Android](https://github.com/rafaelvcaetano/melonDS-android) by rafaelvcaetano
-* [WatermelonDS](https://github.com/SapphireRhodonite/WatermelonDS) by SapphireRhodonite
-* [librashader](https://github.com/SnowflakePowered/librashader) and [rcheevos](https://github.com/RetroAchievements/rcheevos)
+- [melonDS](https://github.com/melonDS-emu/melonDS) by Arisotura and contributors
+- [melonDS Android](https://github.com/rafaelvcaetano/melonDS-android) by rafaelvcaetano
+- [WatermelonDS](https://github.com/SapphireRhodonite/WatermelonDS) by SapphireRhodonite
+- [librashader](https://github.com/SnowflakePowered/librashader) and [rcheevos](https://github.com/RetroAchievements/rcheevos)
+- AYN Thor photo by [darreoncollins](https://github.com/darreoncollins)
 
 Licensed under the GPLv3, like melonDS.
