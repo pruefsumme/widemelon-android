@@ -29,8 +29,8 @@
     <string name="console_ds">DS</string>
     <string name="console_dsi">DSi (Experimental)</string>
 
-    <string name="console_ds_full">Nintendo DS</string>
-    <string name="console_dsi_full">Nintendo DSi</string>
+    <string name="console_ds_full">DS</string>
+    <string name="console_dsi_full">DSi</string>
 
     <string name="size_bytes">B</string>
     <string name="size_kb">KB</string>
@@ -1159,7 +1159,7 @@
     <string name="waiting_for_combo">Hold two different buttons on the same controller. The first button can act before the combo is complete; use an unassigned button as the modifier to avoid this.</string>
     <string name="input_combo_conflict">This combination is already assigned to %1$s. Clear that assignment first, or choose a different pair.</string>
     <string name="input_slot2_analog">Slot-2 analog stick</string>
-    <string name="wfc_settings_title">Nintendo WFC settings</string>
+    <string name="wfc_settings_title">WFC settings</string>
     <string name="wfc_settings_summary">With built-in firmware, store wfcsettings.bin in a folder you can sync with a PC. An existing file is kept; an empty folder receives your current profile. Set the same MAC address on both emulators and sync only while both are closed. Changes apply the next time you launch a game.</string>
     <string name="wfc_settings_directory">WFC settings folder</string>
     <string name="wfc_settings_use_internal">Use app storage for WFC</string>
@@ -1248,7 +1248,7 @@
     <string name="about_license">License</string>
     <string name="about_license_gpl">GNU General Public License v3</string>
     <string name="about_license_summary">Free software, the full source code is available on GitHub</string>
-    <string name="about_trademark_notice">WideMelon is not affiliated with or endorsed by Nintendo. It does not include any games or system files.</string>
+    <string name="about_trademark_notice">WideMelon is an independent project and is not affiliated with or endorsed by any console maker. It does not include any games or system files.</string>
 
     <!-- Widescreen compatibility notice -->
     <string name="widescreen_compatibility_title">Not every game is made for widescreen</string>

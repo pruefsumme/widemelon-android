@@ -27,8 +27,8 @@
     <string name="console_ds">DS</string>
     <string name="console_dsi">DSi (Sperimentale)</string>
 
-    <string name="console_ds_full">Nintendo DS</string>
-    <string name="console_dsi_full">Nintendo DSi</string>
+    <string name="console_ds_full">DS</string>
+    <string name="console_dsi_full">DSi</string>
 
     <string name="size_bytes">B</string>
     <string name="size_kb">KB</string>

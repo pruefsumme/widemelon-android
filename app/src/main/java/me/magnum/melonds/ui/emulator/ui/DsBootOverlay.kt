@@ -259,7 +259,7 @@ private fun DsBottomLabel(title: String?, waiting: Boolean, alpha: Float) {
             .padding(horizontal = 10.dp),
     ) {
         Text(
-            text = title?.uppercase() ?: "NINTENDO DS",
+            text = title?.uppercase() ?: "DS",
             color = Color(0xFFB3BBC7),
             fontFamily = WatermelonMono,
             fontWeight = FontWeight.SemiBold,

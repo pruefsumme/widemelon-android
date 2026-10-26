@@ -5,7 +5,7 @@
 <h1 align="center">WideMelon for Android</h1>
 
 <p align="center">
-  Play Nintendo DS games without the black bars.
+  Play DS games without the black bars.
   <br>
   <a href="https://github.com/pruefsumme/widemelon-android/releases/latest">Download</a> ·
   <a href="https://github.com/pruefsumme/widemelon-android/releases/tag/nightly">Nightly</a> ·

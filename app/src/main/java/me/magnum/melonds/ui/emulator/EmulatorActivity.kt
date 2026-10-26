@@ -2710,7 +2710,7 @@ class EmulatorActivity : AppCompatActivity() {
         addRenderer2DSection(content, title)
         addRenderer2DDescription(
             content,
-            "Forces the Nintendo DS BG mode used by `DrawScanline_BGOBJ`. Native keeps `CurUnit->DispCnt & 0x7`.",
+            "Forces the DS BG mode used by `DrawScanline_BGOBJ`. Native keeps `CurUnit->DispCnt & 0x7`.",
         )
         addRenderer2DModeGroup(
             parent = content,
@@ -2832,7 +2832,7 @@ class EmulatorActivity : AppCompatActivity() {
         addRenderer2DSection(content, title)
         addRenderer2DDescription(
             content,
-            "Disables BG layers by Nintendo DS BGCNT priority bits 0-1. Priority 0 is closest to the viewer; priority 3 is furthest back.",
+            "Disables BG layers by DS BGCNT priority bits 0-1. Priority 0 is closest to the viewer; priority 3 is furthest back.",
         )
         addRenderer2DPrioritySwitches(
             parent = content,
@@ -2883,7 +2883,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_STATIC_BACKGROUND,
             title = "Static background",
-            description = "Nintendo DS static BG. Code: `DrawBG_Text`; used by BG0/BG1 and by BG2/BG3 when the active mode selects text/static layers.",
+            description = "DS static BG. Code: `DrawBG_Text`; used by BG0/BG1 and by BG2/BG3 when the active mode selects text/static layers.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -2891,7 +2891,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_AFFINE_BACKGROUND,
             title = "Affine background",
-            description = "Nintendo DS affine BG. Code: `DrawBG_Affine`; used for BG2/BG3 in modes that select affine transform layers.",
+            description = "DS affine BG. Code: `DrawBG_Affine`; used for BG2/BG3 in modes that select affine transform layers.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -2899,7 +2899,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_AFFINE_EXTENDED_TILED_BACKGROUND,
             title = "Affine Extended background - tiled",
-            description = "Nintendo DS affine extended tiled BG. Code: `DrawBG_Extended` with BGCNT bitmap bit clear; keeps the tile path with H/V flip support.",
+            description = "DS affine extended tiled BG. Code: `DrawBG_Extended` with BGCNT bitmap bit clear; keeps the tile path with H/V flip support.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
 
@@ -2918,7 +2918,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_AFFINE_EXTENDED_BITMAP_256_BACKGROUND,
             title = "Affine Extended background - 256 colors bitmap",
-            description = "Nintendo DS affine extended 256-color bitmap BG. Code: `DrawBG_Extended` bitmap path without direct-color bit; VRAM is treated as a paletted framebuffer.",
+            description = "DS affine extended 256-color bitmap BG. Code: `DrawBG_Extended` bitmap path without direct-color bit; VRAM is treated as a paletted framebuffer.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -2926,7 +2926,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_AFFINE_EXTENDED_DIRECT_COLOR_BACKGROUND,
             title = "Affine Extended background - direct color bitmap",
-            description = "Nintendo DS affine extended direct-color bitmap BG. Code: `DrawBG_Extended` bitmap path with BGCNT direct-color bit; VRAM is treated as 15-bit direct color.",
+            description = "DS affine extended direct-color bitmap BG. Code: `DrawBG_Extended` bitmap path with BGCNT direct-color bit; VRAM is treated as 15-bit direct color.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -2934,7 +2934,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_LARGE_SCREEN_BACKGROUND,
             title = "Large screen background",
-            description = "Nintendo DS large screen BG. Code: `DrawBG_Large`; mode 6 BG2 large framebuffer path, available only on Engine A (Main).",
+            description = "DS large screen BG. Code: `DrawBG_Large`; mode 6 BG2 large framebuffer path, available only on Engine A (Main).",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
 
@@ -2953,7 +2953,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_3D_BACKGROUND,
             title = "3D background",
-            description = "Nintendo DS 3D background layer. Code: `DrawBG_3D`; Engine A BG0 placeholder/output used to composite GPU3D with the 2D BG/OBJ stack.",
+            description = "DS 3D background layer. Code: `DrawBG_3D`; Engine A BG0 placeholder/output used to composite GPU3D with the 2D BG/OBJ stack.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
 
@@ -2987,7 +2987,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_OBJECTS,
             title = "OBJ (Objects / Sprites)",
-            description = "Nintendo DS sprites from OAM. Code: `DrawSprites`, `DrawSprite_Normal`, `DrawSprite_Rotscale` and `InterleaveSprites`; covers tiled and bitmap OBJ pixels.",
+            description = "DS sprites from OAM. Code: `DrawSprites`, `DrawSprite_Normal`, `DrawSprite_Rotscale` and `InterleaveSprites`; covers tiled and bitmap OBJ pixels.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
 
@@ -3096,7 +3096,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_OBJECT_UPPER_BAND,
             title = "OBJ upper band - Y 0..63",
-            description = "Nintendo DS OBJ pixels and OBJ Window mask for the upper third of the current LCD. Code gate: `DrawSprites(line)` returns after clearing `OBJLine`/`OBJWindow` when `line < 64`.",
+            description = "DS OBJ pixels and OBJ Window mask for the upper third of the current LCD. Code gate: `DrawSprites(line)` returns after clearing `OBJLine`/`OBJWindow` when `line < 64`.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -3104,7 +3104,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_OBJECT_MIDDLE_BAND,
             title = "OBJ middle band - Y 64..127",
-            description = "Nintendo DS OBJ pixels and OBJ Window mask for the middle third of the current LCD. Code gate: `DrawSprites(line)` line range 64..127.",
+            description = "DS OBJ pixels and OBJ Window mask for the middle third of the current LCD. Code gate: `DrawSprites(line)` line range 64..127.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -3112,7 +3112,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_OBJECT_LOWER_BAND,
             title = "OBJ lower band - Y 128..191",
-            description = "Nintendo DS OBJ pixels and OBJ Window mask for the lower third of the current LCD. Code gate: `DrawSprites(line)` line range 128..191.",
+            description = "DS OBJ pixels and OBJ Window mask for the lower third of the current LCD. Code gate: `DrawSprites(line)` line range 128..191.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
 
@@ -3131,7 +3131,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_REGULAR_OBJECT,
             title = "OBJ regular transform",
-            description = "Nintendo DS non-affine OBJ. Code: `DrawSprite_Normal`; OAM Attribute 0 affine flag bit 8 is clear.",
+            description = "DS non-affine OBJ. Code: `DrawSprite_Normal`; OAM Attribute 0 affine flag bit 8 is clear.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -3139,7 +3139,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_AFFINE_OBJECT,
             title = "OBJ affine / rotscale transform",
-            description = "Nintendo DS affine OBJ. Code: `DrawSprite_Rotscale`; OAM Attribute 0 affine flag bit 8 is set.",
+            description = "DS affine OBJ. Code: `DrawSprite_Rotscale`; OAM Attribute 0 affine flag bit 8 is set.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -3147,7 +3147,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_TILED_4BPP_OBJECT,
             title = "OBJ tiled - 16 colors",
-            description = "Nintendo DS tiled OBJ using 4bpp/16-color data. Code path in `DrawSprite_*` when Attribute 0 color mode bit 13 is clear.",
+            description = "DS tiled OBJ using 4bpp/16-color data. Code path in `DrawSprite_*` when Attribute 0 color mode bit 13 is clear.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -3155,7 +3155,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_TILED_8BPP_OBJECT,
             title = "OBJ tiled - 256 colors",
-            description = "Nintendo DS tiled OBJ using 8bpp/256-color data. Code path in `DrawSprite_*` when Attribute 0 color mode bit 13 is set.",
+            description = "DS tiled OBJ using 8bpp/256-color data. Code path in `DrawSprite_*` when Attribute 0 color mode bit 13 is set.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -3163,7 +3163,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_BITMAP_OBJECT,
             title = "OBJ bitmap",
-            description = "Nintendo DS bitmap OBJ. Code path in `DrawSprite_*` when OAM Attribute 0 object mode bits 10-11 equal 3.",
+            description = "DS bitmap OBJ. Code path in `DrawSprite_*` when OAM Attribute 0 object mode bits 10-11 equal 3.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
 
@@ -3182,7 +3182,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_BLENDED_OBJECT,
             title = "OBJ semi-transparent",
-            description = "Nintendo DS semi-transparent OBJ. Code path in `DrawSprite_*` when OAM Attribute 0 object mode bits 10-11 equal 1.",
+            description = "DS semi-transparent OBJ. Code path in `DrawSprite_*` when OAM Attribute 0 object mode bits 10-11 equal 1.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -3190,7 +3190,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_WINDOW_OBJECT,
             title = "OBJ Window",
-            description = "Nintendo DS OBJ Window mask. Code: `DrawSprite_*<true>` fills `OBJWindow`; affects window clipping rather than visible color directly.",
+            description = "DS OBJ Window mask. Code: `DrawSprite_*<true>` fills `OBJWindow`; affects window clipping rather than visible color directly.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
         addRenderer2DFeatureSwitch(
@@ -3198,7 +3198,7 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_2D_DEBUG_FEATURE_MOSAIC_OBJECT,
             title = "OBJ mosaic",
-            description = "Nintendo DS OBJ using mosaic. Code: Attribute 0 mosaic bit 12 and `ApplySpriteMosaicX`.",
+            description = "DS OBJ using mosaic. Code: Attribute 0 mosaic bit 12 and `ApplySpriteMosaicX`.",
             applyState = { applyRenderer2DDebugControlState(state) },
         )
 
@@ -3264,14 +3264,14 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_3D_DEBUG_FEATURE_TRIANGLE_POLYGONS,
             title = "Triangle polygons",
-            description = "Nintendo DS 3D polygon primitives. Code gate: `AcceleratedPrimitiveType::Triangles` or `polygon->Type != 1`.",
+            description = "DS 3D polygon primitives. Code gate: `AcceleratedPrimitiveType::Triangles` or `polygon->Type != 1`.",
         )
         addRenderer3DFeatureSwitch(
             parent = content,
             state = state,
             flag = RendererDebugBridge.RENDERER_3D_DEBUG_FEATURE_LINE_POLYGONS,
             title = "Line polygons",
-            description = "Nintendo DS 3D line primitives expanded into quads for Vulkan. Code gate: `AcceleratedPrimitiveType::Lines` or `polygon->Type == 1`.",
+            description = "DS 3D line primitives expanded into quads for Vulkan. Code gate: `AcceleratedPrimitiveType::Lines` or `polygon->Type == 1`.",
         )
 
         showRendererDebugScrollDialog("Primitive buckets", scrollView) {
@@ -3303,14 +3303,14 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_3D_DEBUG_FEATURE_SHADOW_MASK_POLYGONS,
             title = "Shadow mask polygons",
-            description = "Nintendo DS shadow mask polygons. Code bucket: `GraphicsShadowMaskDrawIndices` and `AcceleratedPolygonFlagShadowMask`.",
+            description = "DS shadow mask polygons. Code bucket: `GraphicsShadowMaskDrawIndices` and `AcceleratedPolygonFlagShadowMask`.",
         )
         addRenderer3DFeatureSwitch(
             parent = content,
             state = state,
             flag = RendererDebugBridge.RENDERER_3D_DEBUG_FEATURE_SHADOW_POLYGONS,
             title = "Shadow polygons",
-            description = "Nintendo DS shadow blend polygons. Code bucket: `GraphicsShadowDrawIndices` and `AcceleratedPolygonFlagShadow`.",
+            description = "DS shadow blend polygons. Code bucket: `GraphicsShadowDrawIndices` and `AcceleratedPolygonFlagShadow`.",
         )
 
         showRendererDebugScrollDialog("Blend buckets", scrollView) {
@@ -3364,21 +3364,21 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_3D_DEBUG_FEATURE_MODULATE_POLYGONS,
             title = "Modulation polygons",
-            description = "Nintendo DS polygon mode 0 or untextured fallback. Code gate: `PolyAttr` blend mode not decal/toon-highlight.",
+            description = "DS polygon mode 0 or untextured fallback. Code gate: `PolyAttr` blend mode not decal/toon-highlight.",
         )
         addRenderer3DFeatureSwitch(
             parent = content,
             state = state,
             flag = RendererDebugBridge.RENDERER_3D_DEBUG_FEATURE_DECAL_POLYGONS,
             title = "Decal polygons",
-            description = "Nintendo DS decal-style textured polygons. Code gate: textured polygon with `PolyAttr` blend mode bit 0 set.",
+            description = "DS decal-style textured polygons. Code gate: textured polygon with `PolyAttr` blend mode bit 0 set.",
         )
         addRenderer3DFeatureSwitch(
             parent = content,
             state = state,
             flag = RendererDebugBridge.RENDERER_3D_DEBUG_FEATURE_TOON_HIGHLIGHT_POLYGONS,
             title = "Toon / highlight polygons",
-            description = "Nintendo DS toon/highlight polygon mode. Code gate: `PolyAttr` blend mode 2; Vulkan chooses toon or highlight from `RenderDispCnt`.",
+            description = "DS toon/highlight polygon mode. Code gate: `PolyAttr` blend mode 2; Vulkan chooses toon or highlight from `RenderDispCnt`.",
         )
 
         showRendererDebugScrollDialog("Polygon mode", scrollView) {
@@ -3407,14 +3407,14 @@ class EmulatorActivity : AppCompatActivity() {
             state = state,
             flag = RendererDebugBridge.RENDERER_3D_DEBUG_FEATURE_W_BUFFER_POLYGONS,
             title = "W-buffer polygons",
-            description = "Nintendo DS W-buffer polygons. Code gate: `AcceleratedPolygonFlagWBuffer`; Vulkan uses perspective W depth interpolation.",
+            description = "DS W-buffer polygons. Code gate: `AcceleratedPolygonFlagWBuffer`; Vulkan uses perspective W depth interpolation.",
         )
         addRenderer3DFeatureSwitch(
             parent = content,
             state = state,
             flag = RendererDebugBridge.RENDERER_3D_DEBUG_FEATURE_Z_BUFFER_POLYGONS,
             title = "Z-buffer polygons",
-            description = "Nintendo DS Z-buffer polygons. Code gate: absence of `AcceleratedPolygonFlagWBuffer`; Vulkan uses screen-space linear Z depth.",
+            description = "DS Z-buffer polygons. Code gate: absence of `AcceleratedPolygonFlagWBuffer`; Vulkan uses screen-space linear Z depth.",
         )
         addRenderer3DFeatureSwitch(
             parent = content,
@@ -4183,22 +4183,22 @@ private val renderer2DDebugBgLayerItems = listOf(
     Renderer2DBgLayerItem(
         bgIndex = 0,
         title = "BG0 - first static or 3D background layer",
-        description = "Nintendo DS BG0. Code gate: DISPCNT bit 8; DrawBG_Text, or DrawBG_3D on Engine A when DISPCNT bit 3 selects the 3D background.",
+        description = "DS BG0. Code gate: DISPCNT bit 8; DrawBG_Text, or DrawBG_3D on Engine A when DISPCNT bit 3 selects the 3D background.",
     ),
     Renderer2DBgLayerItem(
         bgIndex = 1,
         title = "BG1 - static background layer",
-        description = "Nintendo DS BG1. Code gate: DISPCNT bit 9; currently routes through DrawBG_Text in the software 2D compositor.",
+        description = "DS BG1. Code gate: DISPCNT bit 9; currently routes through DrawBG_Text in the software 2D compositor.",
     ),
     Renderer2DBgLayerItem(
         bgIndex = 2,
         title = "BG2 - static, affine, affine extended or large screen background",
-        description = "Nintendo DS BG2. Code gate: DISPCNT bit 10; routes through DrawBG_Text, DrawBG_Affine, DrawBG_Extended or DrawBG_Large depending on BG mode and BGCNT.",
+        description = "DS BG2. Code gate: DISPCNT bit 10; routes through DrawBG_Text, DrawBG_Affine, DrawBG_Extended or DrawBG_Large depending on BG mode and BGCNT.",
     ),
     Renderer2DBgLayerItem(
         bgIndex = 3,
         title = "BG3 - static, affine or affine extended background",
-        description = "Nintendo DS BG3. Code gate: DISPCNT bit 11; routes through DrawBG_Text, DrawBG_Affine or DrawBG_Extended depending on BG mode and BGCNT.",
+        description = "DS BG3. Code gate: DISPCNT bit 11; routes through DrawBG_Text, DrawBG_Affine or DrawBG_Extended depending on BG mode and BGCNT.",
     ),
 )
 
@@ -4206,22 +4206,22 @@ private val renderer2DDebugPriorityItems = listOf(
     Renderer2DPriorityItem(
         priority = 0,
         title = "Priority 0 - frontmost",
-        description = "Highest Nintendo DS priority; this layer is drawn closest to the viewer.",
+        description = "Highest DS priority; this layer is drawn closest to the viewer.",
     ),
     Renderer2DPriorityItem(
         priority = 1,
         title = "Priority 1",
-        description = "Second-highest Nintendo DS priority.",
+        description = "Second-highest DS priority.",
     ),
     Renderer2DPriorityItem(
         priority = 2,
         title = "Priority 2",
-        description = "Second-lowest Nintendo DS priority.",
+        description = "Second-lowest DS priority.",
     ),
     Renderer2DPriorityItem(
         priority = 3,
         title = "Priority 3 - backmost",
-        description = "Lowest Nintendo DS priority; this layer is drawn furthest back.",
+        description = "Lowest DS priority; this layer is drawn furthest back.",
     ),
 )
 

@@ -1147,7 +1147,7 @@
     <string name="waiting_for_combo">同时按住同一控制器上的两个不同按键。组合完成前，第一个按键仍可能触发原有功能；使用未分配功能的按键作为修饰键可避免此情况。</string>
     <string name="input_combo_conflict">此组合已分配给 %1$s。请先清除原分配，或选择其他按键组合。</string>
     <string name="input_slot2_analog">Slot-2 模拟摇杆</string>
-    <string name="wfc_settings_title">Nintendo WFC 设置</string>
+    <string name="wfc_settings_title">WFC 设置</string>
     <string name="wfc_settings_summary">使用内置固件时，将 wfcsettings.bin 保存在可与电脑同步的文件夹中。已有文件将保留；空文件夹将接收当前配置。请在两个模拟器中设置相同的 MAC 地址，并仅在两者都关闭时同步。更改将在下次启动游戏时生效。</string>
     <string name="wfc_settings_directory">WFC 设置文件夹</string>
     <string name="wfc_settings_use_internal">使用应用内部存储保存 WFC</string>

@@ -211,7 +211,7 @@ std::optional<Firmware> generateFirmware(const EmulatorConfiguration& configurat
     assert(firmware.Buffer() != nullptr);
 
     // If using generated firmware, we keep the wi-fi settings on the host disk separately.
-    // Wi-fi access point data includes Nintendo WFC settings,
+    // Wi-fi access point data includes WFC settings,
     // and if we didn't keep them then the player would have to reset them in each session.
     // We don't need to save the whole firmware, just the part that may actually change.
     if (!configuration.wfcSettingsPath.empty())

@@ -1,4 +1,4 @@
-collection: Nintendo DS
+collection: DS
 extension: nds, zip, 7z, dsi
 launch: am start
   -n me.magnum.melonds.nightly/me.magnum.melonds.ui.emulator.EmulatorActivity
