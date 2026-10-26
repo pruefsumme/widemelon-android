@@ -70,6 +70,7 @@ sealed class ToastEvent {
     ) : ToastEvent()
     data class WidescreenNeedsOpenGl(
         val renderer: VideoRenderer,
+        val setForThisGame: Boolean,
     ) : ToastEvent()
     data class RendererDebugCaptureLogged(
         val captureId: String,

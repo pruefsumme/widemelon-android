@@ -1050,7 +1050,8 @@ class EmulatorActivity : AppCompatActivity() {
                             getString(R.string.renderer_init_failed_message, rendererLabel(it.renderer)) to Toast.LENGTH_LONG
                         }
                         is ToastEvent.WidescreenNeedsOpenGl -> {
-                            getString(R.string.widescreen_needs_opengl_toast, rendererLabel(it.renderer)) to Toast.LENGTH_LONG
+                            val messageRes = if (it.setForThisGame) R.string.widescreen_needs_opengl_game_toast else R.string.widescreen_needs_opengl_toast
+                            getString(messageRes, rendererLabel(it.renderer)) to Toast.LENGTH_LONG
                         }
                         is ToastEvent.RendererDebugCaptureLogged -> {
                             getString(R.string.renderer_debug_capture_logged, it.captureId) to Toast.LENGTH_LONG

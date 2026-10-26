@@ -3072,7 +3072,9 @@ class EmulatorViewModel @Inject constructor(
                 if (needsWarning) rendererConfig.renderer else null
             }.distinctUntilChanged().collect {
                 if (it != null) {
-                    _toastEvent.tryEmit(ToastEvent.WidescreenNeedsOpenGl(it))
+                    // a renderer picked in the game's own settings wins over Settings > Video, and is easy to forget about
+                    val romRenderer = (_emulatorState.value as? EmulatorState.RunningRom)?.rom?.config?.videoRenderer
+                    _toastEvent.tryEmit(ToastEvent.WidescreenNeedsOpenGl(it, setForThisGame = romRenderer == it))
                 }
             }
         }

@@ -1202,7 +1202,8 @@
     <string name="widescreen_overlay_size">Overlay size</string>
     <string name="widescreen_overlay_opacity">Overlay opacity</string>
     <string name="widescreen_fallback">Other renderers</string>
-    <string name="widescreen_needs_opengl_toast">Widescreen needs the OpenGL renderer, %1$s can only stretch. Change it in Settings > Video, or in this game\'s settings.</string>
+    <string name="widescreen_needs_opengl_toast">Widescreen needs OpenGL, not %1$s. Switch the renderer in Settings › Video.</string>
+    <string name="widescreen_needs_opengl_game_toast">Widescreen needs OpenGL, but this game is set to %1$s. Change it in the game\'s ROM Config &amp; Details.</string>
     <string name="widescreen_percentage">%1$d%%</string>
     <string name="widescreen_dual_screen_note">On devices with a second screen the bottom screen goes there automatically.</string>
     <string-array name="widescreen_mode_options">
